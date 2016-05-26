@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.0.0-beta1\jars\classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="471ce760dbf7b784fd74892b5113bca4e0d8def7">
+        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-24.0.0-beta1_f41cb3222a8e0175f1f0594c887e7cc68c05d498\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Domino\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.0.0-beta1\support-annotations-24.0.0-beta1.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="04705c19cdec60364bc04e2e928c274da1ba301b">
+        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.0.0-beta1_43601d80b6aca4ddfb3619ff74b464926d07ae12\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="546cad65fe31d8f8a903fc6c2de159308faa3e83">
+        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_320270091dad9b3f9a23d70d1f3502bc79f1fd25\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support\design\24.0.0-beta1\jars\classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="6fd4eef51a55508bdf3f43f8ad96992e1da3850b">
+        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-24.0.0-beta1_0c0d63a4eae0b2f59b6e9d9831b9abfe0abfac75\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0-beta1\jars\libs\internal_impl-24.0.0-beta1.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="23d564c059873f398dc5d967f56791a66472ce76">
+        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.0.0-beta1_c56b97a7a0dc42598df028f10152a66a96d19d2c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0-beta1\jars\classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="f81eecb8d5e9e548f75f277830a94a9b37fbb987">
+        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.0.0-beta1_e4634237a13d1730feb51e79b4702b5dbc53c62c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support.constraint\constraint-layout\1.0.0-alpha1\jars\classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="ea579447f9afb1fbcb28e150e1cd4bfe7f56e75b">
+        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support.constraint-constraint-layout-1.0.0-alpha1_0b4c7547352b3c4493eda2c27891f872263b7875\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Domino\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.0-alpha1\constraint-layout-solver-1.0.0-alpha1.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="78d61c347aa5002119e3c17bffcbebf28fe07b0b">
+        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.0-alpha1_1c719fe66f0e7d1983727043c529450a5c31d7b4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.0.0-beta1\jars\classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="3c0208faf42864e6695345e64d1b955070263819">
+        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.0.0-beta1_70d4cc7080d9c27402e1439efb8b8bbc7c5e2794\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.0.0-beta1\jars\classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="97f82fd0c185bd2881a93646954f2429be4baa86">
+        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.0.0-beta1_d975fbd35c7747304844fe43f388ad22b9f494cf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.0.0-beta1\jars\classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="8d3137a71200c47974c0454ae8ad272a09c533eb">
+        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.0.0-beta1_a0516a779e42d2da7560ccdeca4ab2853e5ad3ce\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="6c17be4d96629f463ec6950d45db056b0cbd523e">
+        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_608cd4368ab6a63d38373c66f056924bd37b0351\classes.dex" />
+    </item>
+
+</items>
