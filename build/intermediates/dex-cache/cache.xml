@@ -30,6 +30,24 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0-beta1\jars\classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="f81eecb8d5e9e548f75f277830a94a9b37fbb987">
+        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.0.0-beta1_e4634237a13d1730feb51e79b4702b5dbc53c62c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support.constraint\constraint-layout\1.0.0-alpha1\jars\classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="6ea200a19689e637dafc8b8f036734a1b9cbe2b3">
+        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support.constraint-constraint-layout-1.0.0-alpha1_0b4c7547352b3c4493eda2c27891f872263b7875\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support\design\24.0.0-beta1\jars\classes.jar"
         jumboMode="true"
         optimize="false"
@@ -48,33 +66,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0-beta1\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="f81eecb8d5e9e548f75f277830a94a9b37fbb987">
-        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.0.0-beta1_e4634237a13d1730feb51e79b4702b5dbc53c62c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support.constraint\constraint-layout\1.0.0-alpha1\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="ea579447f9afb1fbcb28e150e1cd4bfe7f56e75b">
-        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support.constraint-constraint-layout-1.0.0-alpha1_0b4c7547352b3c4493eda2c27891f872263b7875\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Domino\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.0-alpha1\constraint-layout-solver-1.0.0-alpha1.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="78d61c347aa5002119e3c17bffcbebf28fe07b0b">
-        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.0-alpha1_1c719fe66f0e7d1983727043c529450a5c31d7b4\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.0.0-beta1\jars\classes.jar"
         jumboMode="true"
         optimize="false"
@@ -90,6 +81,15 @@
         revision="23.0.3"
         sha1="97f82fd0c185bd2881a93646954f2429be4baa86">
         <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.0.0-beta1_d975fbd35c7747304844fe43f388ad22b9f494cf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Domino\Desktop\android-studio\gradle\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.0-alpha1\constraint-layout-solver-1.0.0-alpha1.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="23c28d005ab0c8197f8ee39d63b4dd09949bf9cc">
+        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.0-alpha1_94b450004753f353bb852ce3cae6623cebf71460\classes.dex" />
     </item>
     <item
         is-multidex="true"
