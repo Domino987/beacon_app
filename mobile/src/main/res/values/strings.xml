@@ -8,6 +8,6 @@
     <string name="machines">machines</string>
     <string name="ordersInReach">orders in reach</string>
     <string name="otherOrders">other orders</string>
-    <string name="machinesInReach">machnies in reach</string>
-    <string name="otherMachnies">other machnies</string>
+    <string name="machinesInReach">machines in reach</string>
+    <string name="otherMachnies">other machines</string>
 </resources>
