@@ -72,7 +72,10 @@ public class Activity_Main extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            getSupportFragmentManager().popBackStack();
+            if(getSupportFragmentManager().getBackStackEntryCount()>0)
+                getSupportFragmentManager().popBackStack();
+            else
+                super.onBackPressed();
         }
     }
 

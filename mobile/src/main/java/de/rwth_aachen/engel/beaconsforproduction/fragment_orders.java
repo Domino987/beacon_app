@@ -16,4 +16,10 @@ public class fragment_orders extends Fragment{
                     R.layout.beacon_list, container, false);
             return view;
         }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((Activity_Main)getActivity()).setUpArrow(getString(R.string.orders));
     }
+}

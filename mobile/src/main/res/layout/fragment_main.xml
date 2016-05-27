@@ -20,7 +20,7 @@
         android:layout_weight="1"
         android:background="@color/orange"
         android:textColor="@color/white"
-        android:drawableEnd="@android:drawable/ic_menu_camera"
+        android:drawableEnd="@drawable/order"
         android:layout_margin="15dp"
         android:textSize="24sp"/>
     <Button
@@ -34,6 +34,6 @@
         android:layout_weight="1"
         android:background="@color/orange"
         android:textColor="@color/white"
-        android:drawableEnd="@android:drawable/ic_menu_camera"
+        android:drawableEnd="@drawable/machine"
         android:textSize="24sp"/>
 </LinearLayout>
