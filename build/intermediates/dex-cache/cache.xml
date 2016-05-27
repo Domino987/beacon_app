@@ -21,33 +21,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
-        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.4.0_5c7941aeb809bfd1aeb760324ec5745780d00771\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support\design\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
-        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.4.0_ed0e502243515a1c22dde30812f0051b7bcc9dca\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
-        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.4.0_47269ad85a5a9e5aab3e77b43e4abe3f2d9b93e4\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Domino\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
         jumboMode="true"
         optimize="false"
@@ -66,12 +39,30 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.4.0_5c7941aeb809bfd1aeb760324ec5745780d00771\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support.constraint\constraint-layout\1.0.0-alpha1\jars\classes.jar"
         jumboMode="true"
         optimize="false"
         revision="23.0.3"
         sha1="ea579447f9afb1fbcb28e150e1cd4bfe7f56e75b">
         <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support.constraint-constraint-layout-1.0.0-alpha1_0b4c7547352b3c4493eda2c27891f872263b7875\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support\design\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
+        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.4.0_ed0e502243515a1c22dde30812f0051b7bcc9dca\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -90,6 +81,15 @@
         revision="23.0.3"
         sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
         <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.4.0_c57dfdd1871cdeb28f9880acd1b4d094dcdab199\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Domino\beacon_app\mobile\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="C:\Users\Domino\beacon_app\mobile\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.4.0_47269ad85a5a9e5aab3e77b43e4abe3f2d9b93e4\classes.dex" />
     </item>
     <item
         is-multidex="true"

@@ -35,13 +35,16 @@ public class fragment_main extends Fragment implements View.OnClickListener{
                 ft.replace(R.id.fragmentMainContainer, fragment);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 ft.addToBackStack(null);
-                ((Activity_Main)getActivity()).setUpArrow(getString(R.string.machines));
                 ft.commit();
             }
         });
         return view;
     }
-
+    @Override
+    public void onResume(){
+        super.onResume();
+        ((Activity_Main)getActivity()).setUpArrow(getString(R.string.beaconsForProduction));
+    }
     @Override
     public void onClick(View view) {
 

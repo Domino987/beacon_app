@@ -10,4 +10,6 @@
     <string name="otherOrders">other orders</string>
     <string name="machinesInReach">machines in reach</string>
     <string name="otherMachnies">other machines</string>
+    <string name="beaconsForProduction">beacons for production</string>
+
 </resources>
