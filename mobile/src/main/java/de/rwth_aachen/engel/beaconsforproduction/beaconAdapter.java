@@ -1,47 +1,77 @@
 package de.rwth_aachen.engel.beaconsforproduction;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import java.util.List;
 
 /**
  * Created by Domino on 27.05.2016.
  */
 public class beaconAdapter extends RecyclerView.Adapter<beaconAdapter.ViewHolder> {
-    private List<machine> machines;
-    private int itemLayout;
-    public beaconAdapter(List<machine> machines,int itemLayout){
-        this.machines=machines;
-        this.itemLayout=itemLayout;
+    private final List items;
+    private final OnItemClickListener listener;
+    public beaconAdapter(List items, OnItemClickListener listener){
+        this.items=items;
+        this.listener = listener;
+    }
+    public interface OnItemClickListener {
+        void onItemClick(machine item);
+        void onItemClick(order item);
     }
     @Override
     public beaconAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(itemLayout, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_item, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(beaconAdapter.ViewHolder holder, int position) {
-        machine machineItem = machines.get(position);
-        holder.name.setText(machineItem.getName());
-        holder.itemView.setTag(machineItem);
-    }
+        if (!items.isEmpty()&&items.get(position) instanceof machine) {
+            holder.bindMachine((machine)items.get(position), listener);
+        }
+        else if(!items.isEmpty()&&items.get(position) instanceof order){
+            holder.bindOrder((order)items.get(position), listener);
+        }
 
+
+    }
     @Override
     public int getItemCount() {
-        return machines.size();
+        return items.size();
     }
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
-
         public ViewHolder(View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.text);
+            name = (TextView) itemView.findViewById(R.id.listViewItemText);
+        }
+        public void bindMachine(final machine item, final OnItemClickListener listener) {
+            if(item.getName()!=null) {
+                name.setText(item.getName());
+                itemView.setTag(item);
+                itemView.setBackgroundColor(Color.parseColor("#551A8B"));
+            }
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    listener.onItemClick(item);
+                }
+            });
+        }
+        public void bindOrder(final order item, final OnItemClickListener listener) {
+            if(item.getName()!=null) {
+                name.setText(item.getName());
+                itemView.setTag(item);
+                itemView.setBackgroundColor(Color.parseColor("#FFA500"));
+            }
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    listener.onItemClick(item);
+                }
+            });
         }
     }
 }

@@ -1,4 +1,5 @@
 package de.rwth_aachen.engel.beaconsforproduction;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class Activity_Main extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -21,6 +30,11 @@ public class Activity_Main extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Fragment mainFragment = new fragment_main();
+        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentMainContainer,mainFragment);
+        fragmentTransaction.commit();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -58,11 +72,6 @@ public class Activity_Main extends AppCompatActivity
                     }
                 }
             });}
-        Fragment mainFragment = new fragment_main();
-        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentMainContainer,mainFragment);
-        fragmentTransaction.commit();
     }
 
     @Override
@@ -74,8 +83,9 @@ public class Activity_Main extends AppCompatActivity
         } else {
             if(getSupportFragmentManager().getBackStackEntryCount()>0)
                 getSupportFragmentManager().popBackStack();
-            else
+            if(getSupportFragmentManager().getBackStackEntryCount()==0){
                 super.onBackPressed();
+            }
         }
     }
 
@@ -128,4 +138,26 @@ public class Activity_Main extends AppCompatActivity
             getSupportActionBar().setTitle(title);
         }
     }
+    public void newOrder(View v){
+        Fragment fragment = new fragmentNewOrder();
+        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentMainContainer,fragment);
+        fragmentTransaction.commit();
+    }
+    public void pickDueDate(final View v){
+        DatePickerDialog.OnDateSetListener myDatePickerListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
+                Calendar newCalendar = Calendar.getInstance();
+                newCalendar.set(arg1,arg2,arg3);
+                SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+                ((Button)v.findViewById(R.id.detailViewDate)).setText(df.format(newCalendar.getTime()));
+            }
+        };
+        Calendar newCalendar = Calendar.getInstance();
+        DatePickerDialog datepicker = new DatePickerDialog(this,myDatePickerListener, newCalendar.get(Calendar.YEAR),newCalendar.get(Calendar.MONTH),newCalendar.get(Calendar.DAY_OF_MONTH));
+        datepicker.show();
+    }
+
 }

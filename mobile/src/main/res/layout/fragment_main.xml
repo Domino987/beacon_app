@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_activity__main"
     android:orientation="vertical"
@@ -10,30 +11,45 @@
     tools:context="de.rwth_aachen.engel.beaconsforproduction.Activity_Main"
     android:layout_margin="15dp"
     tools:showIn="@layout/app_bar_activity__main">
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp"
+    <android.support.v7.widget.CardView
         android:id="@+id/ordersButton"
-        android:text="@string/orders"
-        android:gravity="start|center_vertical"
+        android:layout_gravity="center"
+        card_view:cardCornerRadius="4dp"
         android:layout_weight="1"
-        android:background="@color/orange"
-        android:textColor="@color/white"
-        android:drawableEnd="@drawable/order"
-        android:layout_margin="15dp"
-        android:textSize="24sp"/>
-    <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
+        android:layout_margin="15dp">
+        <TextView
+            android:background="@color/orange"
+            android:textColor="@color/white"
+            android:padding="16dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical|start"
+            android:textSize="24sp"
+            android:drawableEnd="@drawable/order"
+            android:text="@string/orders"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
         android:id="@+id/machinesButton"
-        android:layout_margin="15dp"
-        android:text="@string/machines"
-        android:gravity="start|center_vertical"
+        android:layout_gravity="center"
+        card_view:cardCornerRadius="4dp"
         android:layout_weight="1"
-        android:background="@color/orange"
-        android:textColor="@color/white"
-        android:drawableEnd="@drawable/machine"
-        android:textSize="24sp"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp">
+        <TextView
+            android:background="@color/purple"
+            android:textColor="@color/white"
+            android:padding="16dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical|start"
+            android:textSize="24sp"
+            android:drawableEnd="@drawable/machine"
+            android:text="@string/machines"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.v7.widget.CardView>
 </LinearLayout>
