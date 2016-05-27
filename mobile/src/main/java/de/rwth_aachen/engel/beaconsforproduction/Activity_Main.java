@@ -8,11 +8,24 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import com.estimote.sdk.*;
+import com.estimote.sdk.eddystone.Eddystone;
+
+import java.util.List;
+
 public class Activity_Main extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    //Beacon Specific
+    private BeaconManager beaconManager;
+    private String scanId;
+
+
+
 
     ActionBarDrawerToggle toggle;
     Toolbar toolbar;
@@ -24,7 +37,7 @@ public class Activity_Main extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-         toggle = new ActionBarDrawerToggle(
+        toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         if(toolbar != null) {
             toggle = new ActionBarDrawerToggle(
@@ -35,7 +48,7 @@ public class Activity_Main extends AppCompatActivity
             getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
                 @Override
                 public void onBackStackChanged() {
-                    if (getSupportFragmentManager().getBackStackEntryCount() > 0&&getSupportActionBar()!=null) {
+                    if (getSupportFragmentManager().getBackStackEntryCount() > 0 && getSupportActionBar()!=null) {
                         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // show back button
                         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                             @Override
@@ -57,12 +70,33 @@ public class Activity_Main extends AppCompatActivity
                         }
                     }
                 }
-            });}
+            });
+        }
         Fragment mainFragment = new fragment_main();
         android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.fragmentMainContainer,mainFragment);
         fragmentTransaction.commit();
+
+        beaconManager = new BeaconManager(getApplicationContext());
+        beaconManager.setEddystoneListener(new BeaconManager.EddystoneListener() {
+            public void onEddystonesFound(List<Eddystone> eddystones) {
+                Log.d("Eddystone", "Nearby Eddystone beacons: " + eddystones);
+            }
+        });
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        SystemRequirementsChecker.checkWithDefaultDialogs(this);
+
+        beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
+            @Override public void onServiceReady() {
+                scanId = beaconManager.startEddystoneScanning();
+            }
+        });
     }
 
     @Override
