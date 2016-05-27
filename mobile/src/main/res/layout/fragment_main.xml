@@ -1,82 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_activity__main"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="de.rwth_aachen.engel.beaconsforproduction.Activity_Main"
     android:layout_margin="15dp"
-    tools:showIn="@layout/app_bar_activity__main"
-    tools:layout_editor_absoluteX="15dp"
-    tools:layout_editor_absoluteY="96dp">
-    <RelativeLayout
+    tools:showIn="@layout/app_bar_activity__main">
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="15dp"
-        android:id="@+id/ordersLayout"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:id="@+id/ordersButton"
+        android:text="@string/orders"
+        android:gravity="start|center_vertical"
+        android:layout_weight="1"
         android:background="@color/orange"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/orders"
-            android:layout_alignParentStart="true"
-            android:layout_centerInParent="true"
-            android:textColor="@color/white"
-            android:id="@+id/textOrders"
-            tools:layout_editor_absoluteX="30dp"
-            tools:layout_editor_absoluteY="114dp" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/orders"
-            android:src="@drawable/ic_menu_camera"
-            android:layout_alignParentEnd="true"
-            android:layout_centerInParent="true"
-            android:id="@+id/imageOrders"
-            android:contentDescription="@string/orders"
-            tools:layout_editor_absoluteX="330dp"
-            tools:layout_editor_absoluteY="111dp" />
-    </RelativeLayout>
-
-    <RelativeLayout
+        android:textColor="@color/white"
+        android:drawableEnd="@android:drawable/ic_menu_camera"
+        android:layout_margin="15dp"
+        android:textSize="24sp"/>
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="15dp"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:id="@+id/machinesButton"
+        android:layout_margin="15dp"
+        android:text="@string/machines"
+        android:gravity="start|center_vertical"
+        android:layout_weight="1"
         android:background="@color/orange"
-        tools:layout_editor_absoluteX="0dp"
-        android:id="@+id/machinesLayout"
-        tools:layout_editor_absoluteY="241dp"
-        app:layout_constraintTop_toTopOf="@+id/content_activity__main"
-        tools:layout_constraintTop_creator="0"
-        app:layout_constraintBottom_toBottomOf="@+id/content_activity__main"
-        tools:layout_constraintBottom_creator="0">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/machines"
-            android:layout_alignParentStart="true"
-            android:layout_centerInParent="true"
-            android:textColor="@color/white"
-            android:id="@+id/textMachines"
-            tools:layout_editor_absoluteX="30dp"
-            tools:layout_editor_absoluteY="114dp" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/orders"
-            android:src="@drawable/ic_menu_camera"
-            android:layout_alignParentEnd="true"
-            android:layout_centerInParent="true"
-            android:id="@+id/imageMachines"
-            android:contentDescription="@string/machines"
-            tools:layout_editor_absoluteX="330dp"
-            tools:layout_editor_absoluteY="111dp" />
-
-    </RelativeLayout>
-</android.support.constraint.ConstraintLayout>
+        android:textColor="@color/white"
+        android:drawableEnd="@android:drawable/ic_menu_camera"
+        android:textSize="24sp"/>
+</LinearLayout>
