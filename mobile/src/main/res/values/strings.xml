@@ -22,6 +22,10 @@
     <string name="databaseMachine">machine from database</string>
     <string name="scanMachine">machine from scan</string>
     <string name="newOrder">new order</string>
+    <string name="newMachine">new machine</string>
     <string name="pickDueDate">pick a due date</string>
+    <string name="save">Save</string>
+    <string name="userSettings">User Settings</string>
+    <string name="logout">Logout</string>
 
 </resources>

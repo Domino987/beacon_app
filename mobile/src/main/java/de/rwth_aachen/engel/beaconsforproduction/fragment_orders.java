@@ -1,5 +1,6 @@
 package de.rwth_aachen.engel.beaconsforproduction;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -8,8 +9,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,6 +30,12 @@ public class fragment_orders extends Fragment{
                     R.layout.beacon_list, container, false);
             ((TextView)view.findViewById(R.id.beaconsInReach)).setText(getString(R.string.ordersInReach));
             ((TextView)view.findViewById(R.id.otherBeacons)).setText(getString(R.string.otherOrders));
+            view.findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    newOrder(v);
+                }
+            });
             List<order> beaconsInReach = new LinkedList<>();
             order order = new order();
             order.setName("Schönes Teil");
@@ -84,4 +95,13 @@ public class fragment_orders extends Fragment{
         super.onResume();
         ((Activity_Main)getActivity()).setUpArrow(getString(R.string.orders));
     }
+    public void newOrder(View v){
+        Fragment fragment = new fragment_NewOrder();
+        android.support.v4.app.FragmentManager fm = getFragmentManager();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentMainContainer,fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
 }
+

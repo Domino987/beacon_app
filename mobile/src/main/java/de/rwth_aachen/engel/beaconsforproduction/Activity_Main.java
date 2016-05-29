@@ -14,8 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -38,7 +39,7 @@ public class Activity_Main extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-         toggle = new ActionBarDrawerToggle(
+        toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         if(toolbar != null) {
             toggle = new ActionBarDrawerToggle(
@@ -91,43 +92,27 @@ public class Activity_Main extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity__main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        switch (id){
+            case R.id.nav_settings:
+                break;
+            case R.id.nav_user_settings:
+                break;
+            case R.id.nav_logout:
+                break;
+            default:
+                break;
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         assert drawer != null;
         drawer.closeDrawer(GravityCompat.START);
@@ -138,26 +123,4 @@ public class Activity_Main extends AppCompatActivity
             getSupportActionBar().setTitle(title);
         }
     }
-    public void newOrder(View v){
-        Fragment fragment = new fragmentNewOrder();
-        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentMainContainer,fragment);
-        fragmentTransaction.commit();
-    }
-    public void pickDueDate(final View v){
-        DatePickerDialog.OnDateSetListener myDatePickerListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-                Calendar newCalendar = Calendar.getInstance();
-                newCalendar.set(arg1,arg2,arg3);
-                SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-                ((Button)v.findViewById(R.id.detailViewDate)).setText(df.format(newCalendar.getTime()));
-            }
-        };
-        Calendar newCalendar = Calendar.getInstance();
-        DatePickerDialog datepicker = new DatePickerDialog(this,myDatePickerListener, newCalendar.get(Calendar.YEAR),newCalendar.get(Calendar.MONTH),newCalendar.get(Calendar.DAY_OF_MONTH));
-        datepicker.show();
-    }
-
 }

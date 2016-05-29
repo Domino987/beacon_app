@@ -13,8 +13,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="@string/newOrder"/>
+                android:textSize="20sp"
+                android:text="@string/newMachine"/>
         </TableRow>
         <TableRow android:layout_marginTop="5dp">
             <TextView
@@ -23,7 +23,7 @@
                 android:layout_weight="1"
                 android:layout_marginEnd="5dp"
                 android:text="@string/beacon"/>
-            <EditText
+            <Spinner
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="5dp"
-                android:text="@string/orderID"/>
+                android:text="@string/machineID"/>
             <EditText
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -67,30 +67,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/detailViewDescription"/>
-        </TableRow>
-        <TableRow android:layout_marginTop="5dp">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginEnd="5dp"
-                android:text="@string/dueDate"/>
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:focusable="false"
-                android:clickable="false"
-                android:hint="@string/pickDueDate"
-                android:inputType="date"
-                android:id="@+id/detailViewDate"/>
-            <ImageButton
-                android:id="@+id/calendarButton"
-                android:layout_width="0dp"
-                android:layout_weight="0.5"
-                android:layout_height="wrap_content"
-                android:cropToPadding="true"
-                android:src="@android:drawable/ic_menu_my_calendar" />
         </TableRow>
     </TableLayout>
     <Button

@@ -1,7 +1,9 @@
 package de.rwth_aachen.engel.beaconsforproduction;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,6 +26,14 @@ public class fragment_machines extends Fragment{
                     R.layout.beacon_list, container, false);
             ((TextView)view.findViewById(R.id.beaconsInReach)).setText(getString(R.string.machinesInReach));
             ((TextView)view.findViewById(R.id.otherBeacons)).setText(getString(R.string.otherMachnies));
+            FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+            fab.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(), R.color.purple));
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    newMachine(v);
+                }
+            });
             List<machine> beaconsInReach = new LinkedList<>();
             machine machineItem = new machine();
             machineItem.setName("asd");
@@ -106,5 +116,13 @@ public class fragment_machines extends Fragment{
     public void onResume() {
         super.onResume();
         ((Activity_Main)getActivity()).setUpArrow(getString(R.string.machines));
+    }
+    public void newMachine(View v){
+        Fragment fragment = new fragment_newMachine();
+        android.support.v4.app.FragmentManager fm = getFragmentManager();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentMainContainer,fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }
