@@ -1,5 +1,4 @@
 package de.rwth_aachen.engel.beaconsforproduction;
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -9,20 +8,24 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ImageView;
+import com.estimote.sdk.*;
+import com.estimote.sdk.eddystone.Eddystone;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.List;
 
 public class Activity_Main extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    //Beacon Specific
+    private BeaconManager beaconManager;
+    private String scanId;
+
+
+
 
     ActionBarDrawerToggle toggle;
     Toolbar toolbar;
@@ -50,7 +53,7 @@ public class Activity_Main extends AppCompatActivity
             getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
                 @Override
                 public void onBackStackChanged() {
-                    if (getSupportFragmentManager().getBackStackEntryCount() > 0&&getSupportActionBar()!=null) {
+                    if (getSupportFragmentManager().getBackStackEntryCount() > 0 && getSupportActionBar()!=null) {
                         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // show back button
                         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                             @Override
@@ -73,6 +76,25 @@ public class Activity_Main extends AppCompatActivity
                     }
                 }
             });}
+
+        beaconManager = new BeaconManager(getApplicationContext());
+        beaconManager.setEddystoneListener(new BeaconManager.EddystoneListener() {
+            public void onEddystonesFound(List<Eddystone> eddystones) {
+                Log.d("Eddystone", "Nearby Eddystone beacons: " + eddystones);
+            }
+        });
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        SystemRequirementsChecker.checkWithDefaultDialogs(this);
+        beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
+            @Override public void onServiceReady() {
+                scanId = beaconManager.startEddystoneScanning();
+            }
+        });
     }
 
     @Override
