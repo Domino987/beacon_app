@@ -2,47 +2,19 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ScrollView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:padding="15dp"
-            android:background="@color/white"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ordersInReach"
-                android:id="@+id/beaconsInReach"
-                android:layout_marginBottom="15dp"/>
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/beaconsInReachList"
-                android:layout_marginBottom="15dp">
-            </android.support.v7.widget.RecyclerView>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/otherBeacons"
-                android:text="@string/otherOrders"
-                android:layout_marginBottom="15dp"/>
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/otherBeaconsList">
-            </android.support.v7.widget.RecyclerView>
-        </LinearLayout>
-    </ScrollView>
+        android:layout_height="wrap_content"
+        android:id="@+id/beaconsInReachList"
+        android:layout_marginBottom="15dp">
+    </android.support.v7.widget.RecyclerView>
     <android.support.design.widget.FloatingActionButton
     android:id="@+id/fab"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom|end"
     android:layout_margin="@dimen/fab_margin"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        app:backgroundTint="@color/orange"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:backgroundTint="@color/orange"
     android:src="@drawable/plus_white" />
 </android.support.design.widget.CoordinatorLayout>

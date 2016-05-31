@@ -42,7 +42,7 @@ public class fragment_main extends Fragment implements View.OnClickListener{
     @Override
     public void onResume(){
         super.onResume();
-        ((Activity_Main)getActivity()).setUpArrow(getString(R.string.beaconsForProduction));
+        ((Activity_Main)getActivity()).setUpArrow(getString(R.string.WZL));
     }
     @Override
     public void onClick(View view) {

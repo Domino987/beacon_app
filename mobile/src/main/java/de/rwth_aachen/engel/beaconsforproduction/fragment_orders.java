@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,42 +24,12 @@ public class fragment_orders extends Fragment{
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(
                     R.layout.beacon_list, container, false);
-            ((TextView)view.findViewById(R.id.beaconsInReach)).setText(getString(R.string.ordersInReach));
-            ((TextView)view.findViewById(R.id.otherBeacons)).setText(getString(R.string.otherOrders));
             view.findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     newOrder(v);
                 }
             });
-            List<order> beaconsInReach = new LinkedList<>();
-            order order = new order();
-            order.setName("Schönes Teil");
-            order.setBeacon("beacon1");
-            machine machine = new machine();
-            machine.setName("Drehen 1");
-            order.setDatabaseMachine(machine);
-            order.setDescription("Diese schöne Scheiben-sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssmatrize sollten wir genau im Auge behalten");
-            order.setDueDate(new Date());
-            order.setScanMachine(machine);
-            order.setID(1254);
-            order.setTemperatur(100);
-            beaconsInReach.add(order);
-            beaconsInReach.add(order);
-            beaconsInReach.add(order);
-            beaconsInReach.add(order);
-            beaconsInReach.add(order);
-            beaconsInReach.add(order);
-            beaconsInReach.add(order);
-            beaconsInReach.add(order);
-            beaconsInReach.add(order);
-            beaconsInReach.add(order);
-            beaconsInReach.add(order);
-            beaconsInReach.add(order);
-            beaconsInReach.add(order);
-            beaconsInReach.add(order);
-            beaconsInReach.add(order);
-            beaconsInReach.add(order);
             Adapter_Beacons.OnItemClickListener listener = new Adapter_Beacons.OnItemClickListener() {
                 @Override
                 public void onItemClick(machine item) {
@@ -75,13 +46,9 @@ public class fragment_orders extends Fragment{
                 }
             };
             RecyclerView inReachList= (RecyclerView) view.findViewById(R.id.beaconsInReachList);
-            inReachList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-            Adapter_Beacons inAdapter = new Adapter_Beacons(beaconsInReach, listener);
+            inReachList.setLayoutManager(new GridLayoutManager(getActivity(), 1));
+            Adapter_Beacons inAdapter = new Adapter_Beacons(getOrdersInReach(),getOtherOrders(), listener,getString(R.string.ordersInReach),getString(R.string.otherOrders));
             inReachList.setAdapter(inAdapter);
-            RecyclerView otherList= (RecyclerView) view.findViewById(R.id.otherBeaconsList);
-            otherList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-            inAdapter = new Adapter_Beacons(beaconsInReach, listener);
-            otherList.setAdapter(inAdapter);
             return view;
         }
 
@@ -97,6 +64,40 @@ public class fragment_orders extends Fragment{
         fragmentTransaction.replace(R.id.fragmentMainContainer,fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+    public  List<order> getOrdersInReach(){
+        List<order> listItems = new ArrayList<>();
+        for (int i = 0; i<5; i++) {
+            order order = new order();
+            order.setName("inReach"+i);
+            order.setBeacon("beacon1");
+            machine machine = new machine();
+            machine.setName("Drehen 1");
+            order.setDatabaseMachine(machine);
+            order.setDescription("Diese schöne Scheiben-sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssmatrize sollten wir genau im Auge behalten");
+            order.setDueDate(new Date());
+            order.setScanMachine(machine);
+            order.setID(1254);
+            listItems.add(order);
+        }
+        return listItems;
+    }
+    public  List<order> getOtherOrders(){
+        List<order> listItems = new ArrayList<>();
+        for (int i = 0; i<5; i++) {
+            order order = new order();
+            order.setName("other"+i);
+            order.setBeacon("beacon1");
+            machine machine = new machine();
+            machine.setName("Drehen 1");
+            order.setDatabaseMachine(machine);
+            order.setDescription("Diese schöne Scheiben-sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssmatrize sollten wir genau im Auge behalten");
+            order.setDueDate(new Date());
+            order.setScanMachine(machine);
+            order.setID(1254);
+            listItems.add(order);
+        }
+        return listItems;
     }
 }
 
