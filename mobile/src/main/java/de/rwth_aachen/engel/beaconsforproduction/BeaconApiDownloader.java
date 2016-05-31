@@ -9,13 +9,11 @@ import android.util.Log;
  */
 
 public class  BeaconApiDownloader extends AsyncTask <String, Integer, String> {
-    protected String doInBackground(String... url) {
+    protected String doInBackground(String... params) {
 
-        String result = "";
+        String url = "http://itslocationservices.azurewebsites.net/api/getbeacons";
 
-        for(int i = 0; i < url.length; i++) {
-            result += Downloader.executeGET(url[i]);
-        }
+        String result = Downloader.executeGET( url );
 
         return result;
     }
