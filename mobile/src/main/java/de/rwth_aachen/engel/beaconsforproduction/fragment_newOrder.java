@@ -49,8 +49,9 @@ public class fragment_newOrder extends Fragment {
                 newCalendar.set(arg1,arg2,arg3);
                 SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
                 Fragment frag = getFragmentManager().findFragmentById(R.id.fragmentMainContainer);
-                if(frag!=null && frag.getView()!=null&&frag.getView().findViewById(R.id.detailViewDate)!=null)
-                    ((EditText)frag.getView().findViewById(R.id.detailViewDate)).setText(df.format(newCalendar.getTime()));
+                if( frag != null && frag.getView() != null && frag.getView().findViewById( R.id.detailViewDate ) != null) {
+                    ((EditText) frag.getView().findViewById(R.id.detailViewDate)).setText(df.format(newCalendar.getTime()));
+                }
             }
         };
         Calendar newCalendar = Calendar.getInstance();
