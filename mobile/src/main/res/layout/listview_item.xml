@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:padding="5dp"
+    android:padding="10dp"
     android:clickable="true"
     android:focusable="true"
     android:layout_margin="5dp"
@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/listViewItemText"
         android:textColor="@color/white"
+        android:padding="10dp"
         android:background="?android:attr/selectableItemBackground"
         android:gravity="center"
         android:layout_gravity="center_horizontal" />

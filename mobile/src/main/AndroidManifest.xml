@@ -10,13 +10,30 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activity_Main"
-            android:label="@string/app_name"
+            android:label="@string/WZL"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activity_Settings"
+            android:label="@string/action_settings"
+            android:parentActivityName="de.rwth_aachen.engel.beaconsforproduction.Activity_Main"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.rwth_aachen.engel.beaconsforproduction.Activity_Main" />
+        </activity>
+        <activity
+            android:name=".Activity_UserSettings"
+            android:label="@string/userSettings"
+            android:parentActivityName="de.rwth_aachen.engel.beaconsforproduction.Activity_Main"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.rwth_aachen.engel.beaconsforproduction.Activity_Main" />
         </activity>
     </application>
 

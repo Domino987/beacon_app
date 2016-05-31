@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,8 +25,6 @@ public class fragment_machines extends Fragment{
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(
                     R.layout.beacon_list, container, false);
-            ((TextView)view.findViewById(R.id.beaconsInReach)).setText(getString(R.string.machinesInReach));
-            ((TextView)view.findViewById(R.id.otherBeacons)).setText(getString(R.string.otherMachnies));
             FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
             fab.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(), R.color.purple));
             fab.setOnClickListener(new View.OnClickListener() {
@@ -34,58 +33,6 @@ public class fragment_machines extends Fragment{
                     newMachine(v);
                 }
             });
-            List<machine> beaconsInReach = new LinkedList<>();
-            machine machineItem = new machine();
-            machineItem.setName("asd");
-            machineItem.setBeacon("beacon 1");
-            machineItem.setDescription("asddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-            machineItem.setID(1546);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
-            beaconsInReach.add(machineItem);
             Adapter_Beacons.OnItemClickListener listener = new Adapter_Beacons.OnItemClickListener() {
                 @Override
                 public void onItemClick(machine item) {
@@ -97,19 +44,14 @@ public class fragment_machines extends Fragment{
                     ft.addToBackStack(null);
                     ft.commit();
                 }
-
                 @Override
                 public void onItemClick(order item) {
                 }
             };
             RecyclerView inReachList= (RecyclerView) view.findViewById(R.id.beaconsInReachList);
-            inReachList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-            Adapter_Beacons inAdapter = new Adapter_Beacons(beaconsInReach, listener);
+            inReachList.setLayoutManager(new GridLayoutManager(getActivity(), 1));
+            Adapter_Beacons inAdapter = new Adapter_Beacons(getMachinesInReach(),getOtherMachines(), listener,getString(R.string.machinesInReach),getString(R.string.otherMachnies));
             inReachList.setAdapter(inAdapter);
-            RecyclerView otherList= (RecyclerView) view.findViewById(R.id.otherBeaconsList);
-            otherList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-            inAdapter = new Adapter_Beacons(beaconsInReach,listener);
-            otherList.setAdapter(inAdapter);
             return view;
         }
     @Override
@@ -124,5 +66,29 @@ public class fragment_machines extends Fragment{
         fragmentTransaction.replace(R.id.fragmentMainContainer,fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+    public  List<machine> getMachinesInReach(){
+        List<machine> listItems = new ArrayList<>();
+        for (int i = 0; i<5; i++) {
+            machine machineItem = new machine();
+            machineItem.setID(1546);
+            machineItem.setName("inReach"+i);
+            machineItem.setBeacon("beacon 1");
+            machineItem.setDescription("asddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+            listItems.add(machineItem);
+        }
+        return listItems;
+    }
+    public  List<machine> getOtherMachines(){
+        List<machine> listItems = new ArrayList<>();
+            for (int i = 0; i<5; i++) {
+                machine machineItem = new machine();
+                machineItem.setName("Other"+i);
+                machineItem.setID(1546);
+                machineItem.setBeacon("beacon 2");
+                machineItem.setDescription("asddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+                listItems.add(machineItem);
+            }
+        return listItems;
     }
 }
