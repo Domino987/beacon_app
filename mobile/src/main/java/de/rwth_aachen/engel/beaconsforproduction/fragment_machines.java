@@ -11,6 +11,7 @@ import android.view.View;
 import android.support.v4.app.Fragment;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -48,10 +49,15 @@ public class fragment_machines extends Fragment{
                 public void onItemClick(order item) {
                 }
             };
-            RecyclerView inReachList= (RecyclerView) view.findViewById(R.id.beaconsInReachList);
-            inReachList.setLayoutManager(new GridLayoutManager(getActivity(), 1));
-            Adapter_Beacons inAdapter = new Adapter_Beacons(getMachinesInReach(),getOtherMachines(), listener,getString(R.string.machinesInReach),getString(R.string.otherMachnies));
-            inReachList.setAdapter(inAdapter);
+            if(((Activity_Main)getActivity()).getMachineList() != null){
+                RecyclerView inReachList= (RecyclerView) view.findViewById(R.id.beaconsInReachList);
+                inReachList.setLayoutManager(new GridLayoutManager(getActivity(), 1));
+                Adapter_Beacons inAdapter = new Adapter_Beacons(((Activity_Main)getActivity()).getMachineList(),((Activity_Main)getActivity()).getMachineList(), listener,getString(R.string.machinesInReach),getString(R.string.otherMachnies));
+                inReachList.setAdapter(inAdapter);
+            }
+            else{
+                Toast.makeText(getActivity(), getString(R.string.noConnection), Toast.LENGTH_SHORT).show();
+            }
             return view;
         }
     @Override
@@ -66,29 +72,5 @@ public class fragment_machines extends Fragment{
         fragmentTransaction.replace(R.id.fragmentMainContainer,fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-    }
-    public  List<machine> getMachinesInReach(){
-        List<machine> listItems = new ArrayList<>();
-        for (int i = 0; i<5; i++) {
-            machine machineItem = new machine();
-            machineItem.setID(1546);
-            machineItem.setName("inReach"+i);
-            machineItem.setBeacon("beacon 1");
-            machineItem.setDescription("asddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-            listItems.add(machineItem);
-        }
-        return listItems;
-    }
-    public  List<machine> getOtherMachines(){
-        List<machine> listItems = new ArrayList<>();
-            for (int i = 0; i<5; i++) {
-                machine machineItem = new machine();
-                machineItem.setName("Other"+i);
-                machineItem.setID(1546);
-                machineItem.setBeacon("beacon 2");
-                machineItem.setDescription("asddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-                listItems.add(machineItem);
-            }
-        return listItems;
     }
 }

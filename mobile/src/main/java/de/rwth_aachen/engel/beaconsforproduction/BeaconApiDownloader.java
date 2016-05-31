@@ -1,15 +1,21 @@
 package de.rwth_aachen.engel.beaconsforproduction;
 
 
+import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 
 /**
+
  * Created by steffen on 5/27/16.
  */
 
 public class  BeaconApiDownloader extends AsyncTask <String, Integer, String> {
+    Context con;
+    public BeaconApiDownloader(Context con) {
+        this.con=con;
+    }
+
     protected String doInBackground(String... params) {
 
         String url = "http://itslocationservices.azurewebsites.net/api/getbeacons";
@@ -23,8 +29,6 @@ public class  BeaconApiDownloader extends AsyncTask <String, Integer, String> {
         return result;
     }
     protected void onPostExecute(String result) {
-        //Log.d("BeaconApiDownloader", "Downloaded " + result + " bytes");
+        ((Activity_Main)con).setItems(result);
     }
 }
-
-//new BeaconApiDownloader().execute(url1, url2, url3); url as String
