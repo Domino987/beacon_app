@@ -19,7 +19,13 @@ import android.view.View;
 import com.estimote.sdk.*;
 import com.estimote.sdk.eddystone.Eddystone;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class Activity_Main extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
@@ -30,7 +36,7 @@ public class Activity_Main extends AppCompatActivity
 
 
 
-
+    List<machine> machineList;
     ActionBarDrawerToggle toggle;
     Toolbar toolbar;
     DrawerLayout drawer;
@@ -107,7 +113,19 @@ public class Activity_Main extends AppCompatActivity
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
-            new BeaconApiDownloader().execute();
+            try {
+                String s = new BeaconApiDownloader().execute().get();
+                machineList = new ArrayList<>();
+                JSONArray jArray = new JSONArray(s);
+               for(int i = 0;i<jArray.length();i++){
+                   JSONObject jsonObject = new JSONObject(jArray.get(i).toString());
+                   machine m = new machine();
+                   m.setName(jsonObject.getString("name"));
+                   machineList.add(m);
+               }
+            } catch (InterruptedException | ExecutionException | JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -167,5 +185,8 @@ public class Activity_Main extends AppCompatActivity
         if(getSupportActionBar()!=null) {
             getSupportActionBar().setTitle(title);
         }
+    }
+    public List<machine> getMachineList(){
+        return machineList;
     }
 }

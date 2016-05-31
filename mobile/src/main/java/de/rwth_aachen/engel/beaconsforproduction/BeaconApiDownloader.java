@@ -22,7 +22,6 @@ public class  BeaconApiDownloader extends AsyncTask <String, Integer, String> {
         return result;
     }
     protected void onPostExecute(String result) {
-        Log.d("BeaconApiDownloader", "Downloaded " + result + " bytes");
     }
 }
 

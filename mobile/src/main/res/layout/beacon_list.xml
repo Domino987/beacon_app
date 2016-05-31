@@ -15,6 +15,7 @@
     android:layout_gravity="bottom|end"
     android:layout_margin="@dimen/fab_margin"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="de.rwth_aachen.engel.beaconsforproduction.ScrollAwareFABBehavior"
     app:backgroundTint="@color/orange"
     android:src="@drawable/plus_white" />
 </android.support.design.widget.CoordinatorLayout>
