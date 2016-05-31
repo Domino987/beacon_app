@@ -11,6 +11,7 @@ import android.view.View;
 import android.support.v4.app.Fragment;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -48,10 +49,15 @@ public class fragment_machines extends Fragment{
                 public void onItemClick(order item) {
                 }
             };
-            RecyclerView inReachList= (RecyclerView) view.findViewById(R.id.beaconsInReachList);
-            inReachList.setLayoutManager(new GridLayoutManager(getActivity(), 1));
-            Adapter_Beacons inAdapter = new Adapter_Beacons(((Activity_Main)getActivity()).getMachineList(),((Activity_Main)getActivity()).getMachineList(), listener,getString(R.string.machinesInReach),getString(R.string.otherMachnies));
-            inReachList.setAdapter(inAdapter);
+            if(((Activity_Main)getActivity()).getMachineList() != null){
+                RecyclerView inReachList= (RecyclerView) view.findViewById(R.id.beaconsInReachList);
+                inReachList.setLayoutManager(new GridLayoutManager(getActivity(), 1));
+                Adapter_Beacons inAdapter = new Adapter_Beacons(((Activity_Main)getActivity()).getMachineList(),((Activity_Main)getActivity()).getMachineList(), listener,getString(R.string.machinesInReach),getString(R.string.otherMachnies));
+                inReachList.setAdapter(inAdapter);
+            }
+            else{
+                Toast.makeText(getActivity(), getString(R.string.noConnection), Toast.LENGTH_SHORT).show();
+            }
             return view;
         }
     @Override

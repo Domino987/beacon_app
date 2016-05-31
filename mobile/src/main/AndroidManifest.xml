@@ -25,6 +25,7 @@
         <activity
             android:name=".Activity_Settings"
             android:label="@string/action_settings"
+            android:screenOrientation="portrait"
             android:parentActivityName="de.rwth_aachen.engel.beaconsforproduction.Activity_Main"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -34,6 +35,7 @@
         <activity
             android:name=".Activity_UserSettings"
             android:label="@string/userSettings"
+            android:screenOrientation="portrait"
             android:parentActivityName="de.rwth_aachen.engel.beaconsforproduction.Activity_Main"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

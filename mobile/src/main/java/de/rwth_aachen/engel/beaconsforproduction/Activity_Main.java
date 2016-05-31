@@ -113,20 +113,9 @@ public class Activity_Main extends AppCompatActivity
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
-            try {
-                String s = new BeaconApiDownloader().execute().get();
-                machineList = new ArrayList<>();
-                JSONArray jArray = new JSONArray(s);
-               for(int i = 0;i<jArray.length();i++){
-                   JSONObject jsonObject = new JSONObject(jArray.get(i).toString());
-                   machine m = new machine();
-                   m.setName(jsonObject.getString("name"));
-                   machineList.add(m);
-               }
-            } catch (InterruptedException | ExecutionException | JSONException e) {
-                e.printStackTrace();
-            }
+            new BeaconApiDownloader(this).execute();
         }
+
     }
 
 
@@ -187,6 +176,29 @@ public class Activity_Main extends AppCompatActivity
         }
     }
     public List<machine> getMachineList(){
+        if(machineList == null){
+            try {
+                setItems(new BeaconApiDownloader(this).execute().get());
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
         return machineList;
+    }
+    public void setItems(String result){
+        try{
+            if(result!=null){
+                machineList = new ArrayList<>();
+                JSONArray jArray = new JSONArray(result);
+                for(int i = 0;i<jArray.length();i++){
+                    JSONObject jsonObject = new JSONObject(jArray.get(i).toString());
+                    machine m = new machine();
+                    m.setName(jsonObject.getString("name"));
+                    machineList.add(m);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

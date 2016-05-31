@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,10 +46,15 @@ public class fragment_orders extends Fragment{
                     ft.commit();
                 }
             };
-            RecyclerView inReachList= (RecyclerView) view.findViewById(R.id.beaconsInReachList);
-            inReachList.setLayoutManager(new GridLayoutManager(getActivity(), 1));
-            Adapter_Beacons inAdapter = new Adapter_Beacons(((Activity_Main)getActivity()).getMachineList(),((Activity_Main)getActivity()).getMachineList(), listener,getString(R.string.ordersInReach),getString(R.string.otherOrders));
-            inReachList.setAdapter(inAdapter);
+            if(((Activity_Main)getActivity()).getMachineList() != null){
+                RecyclerView inReachList= (RecyclerView) view.findViewById(R.id.beaconsInReachList);
+                inReachList.setLayoutManager(new GridLayoutManager(getActivity(), 1));
+                Adapter_Beacons inAdapter = new Adapter_Beacons(((Activity_Main)getActivity()).getMachineList(),((Activity_Main)getActivity()).getMachineList(), listener,getString(R.string.ordersInReach),getString(R.string.otherOrders));
+                inReachList.setAdapter(inAdapter);
+            }
+            else{
+                Toast.makeText(getActivity(), getString(R.string.noConnection), Toast.LENGTH_SHORT).show();
+            }
             return view;
         }
 
