@@ -13,7 +13,8 @@ public class  BeaconApiDownloader extends AsyncTask <String, Integer, String> {
     protected String doInBackground(String... params) {
 
         String url = "http://itslocationservices.azurewebsites.net/api/getbeacons";
-        String result = "";
+
+        String result;
 
 
         result = Downloader.executeGET(url);
@@ -22,7 +23,7 @@ public class  BeaconApiDownloader extends AsyncTask <String, Integer, String> {
         return result;
     }
     protected void onPostExecute(String result) {
-        Log.d("BeaconApiDownloader", "Downloaded " + result + " bytes");
+        //Log.d("BeaconApiDownloader", "Downloaded " + result + " bytes");
     }
 }
 
