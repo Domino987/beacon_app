@@ -1,2 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Beacons for Production</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="beacon">Beacon</string>
+    <string name="beaconsForProduction">Beacons for Production</string>
+    <string name="company">Unternehmen</string>
+    <string name="databaseMachine">Maschinen aus Datenbank</string>
+    <string name="description">Beschreibung</string>
+    <string name="distance">Distanz in Meter</string>
+    <string name="dueDate">Fertigstellungsdatum</string>
+    <string name="email">Email</string>
+    <string name="filler">filler</string>
+    <string name="firstName">Vorname</string>
+    <string name="lastName">Nachname</string>
+    <string name="logout">Logout</string>
+    <string name="machineDetails">Maschinendetails</string>
+    <string name="machineID">Maschinen ID</string>
+    <string name="machines">Maschinen</string>
+    <string name="machinesInReach">Maschinen in Reichweite</string>
+    <string name="name">Name</string>
+    <string name="navigation_drawer_close"></string>
+    <string name="newMachine">Neue Maschine</string>
+    <string name="newOrder">Neuer Auftrag</string>
+    <string name="orderDetails">Auftragdetails</string>
+    <string name="orderID">Auftrags ID</string>
+    <string name="orders">Aufträge</string>
+    <string name="ordersInReach">Aufträge in Reichweite</string>
+    <string name="otherMachnies">Andere Maschinen</string>
+    <string name="otherOrders">Andere Aufträge</string>
+    <string name="password">Passwort</string>
+    <string name="pickDueDate">Fertigstellungsdatum</string>
+    <string name="save">Speichern</string>
+    <string name="scanMachine">Maschinen aus Scan</string>
+    <string name="userSettings">Benutzereinstellungen</string>
+    <string name="login">Login</string>
+    <string name="register">Registrieren</string>
+    <string name="passwordRepeat">Passwort wiederholen</string>
+</resources>

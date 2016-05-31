@@ -15,7 +15,7 @@ import java.util.Calendar;
 /**
  * Created by Dominik Engel on 27.05.2016.
  */
-public class fragment_NewOrder extends Fragment {
+public class fragment_newOrder extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(

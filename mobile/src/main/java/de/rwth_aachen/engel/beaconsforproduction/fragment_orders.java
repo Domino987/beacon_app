@@ -1,6 +1,5 @@
 package de.rwth_aachen.engel.beaconsforproduction;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -9,12 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -64,7 +59,7 @@ public class fragment_orders extends Fragment{
             beaconsInReach.add(order);
             beaconsInReach.add(order);
             beaconsInReach.add(order);
-            beaconAdapter.OnItemClickListener listener = new beaconAdapter.OnItemClickListener() {
+            Adapter_Beacons.OnItemClickListener listener = new Adapter_Beacons.OnItemClickListener() {
                 @Override
                 public void onItemClick(machine item) {
                 }
@@ -81,11 +76,11 @@ public class fragment_orders extends Fragment{
             };
             RecyclerView inReachList= (RecyclerView) view.findViewById(R.id.beaconsInReachList);
             inReachList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-            beaconAdapter inAdapter = new beaconAdapter(beaconsInReach, listener);
+            Adapter_Beacons inAdapter = new Adapter_Beacons(beaconsInReach, listener);
             inReachList.setAdapter(inAdapter);
             RecyclerView otherList= (RecyclerView) view.findViewById(R.id.otherBeaconsList);
             otherList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-            inAdapter = new beaconAdapter(beaconsInReach, listener);
+            inAdapter = new Adapter_Beacons(beaconsInReach, listener);
             otherList.setAdapter(inAdapter);
             return view;
         }
@@ -96,7 +91,7 @@ public class fragment_orders extends Fragment{
         ((Activity_Main)getActivity()).setUpArrow(getString(R.string.orders));
     }
     public void newOrder(View v){
-        Fragment fragment = new fragment_NewOrder();
+        Fragment fragment = new fragment_newOrder();
         android.support.v4.app.FragmentManager fm = getFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.fragmentMainContainer,fragment);
