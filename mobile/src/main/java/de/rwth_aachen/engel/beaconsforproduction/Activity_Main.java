@@ -34,6 +34,11 @@ public class Activity_Main extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Fragment mainFragment = new fragment_main();
+        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentMainContainer,mainFragment);
+        fragmentTransaction.commit();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -70,13 +75,7 @@ public class Activity_Main extends AppCompatActivity
                         }
                     }
                 }
-            });
-        }
-        Fragment mainFragment = new fragment_main();
-        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentMainContainer,mainFragment);
-        fragmentTransaction.commit();
+            });}
 
         beaconManager = new BeaconManager(getApplicationContext());
         beaconManager.setEddystoneListener(new BeaconManager.EddystoneListener() {
@@ -91,7 +90,6 @@ public class Activity_Main extends AppCompatActivity
         super.onStart();
 
         SystemRequirementsChecker.checkWithDefaultDialogs(this);
-
         beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
             @Override public void onServiceReady() {
                 scanId = beaconManager.startEddystoneScanning();
@@ -108,50 +106,35 @@ public class Activity_Main extends AppCompatActivity
         } else {
             if(getSupportFragmentManager().getBackStackEntryCount()>0)
                 getSupportFragmentManager().popBackStack();
-            else
+            if(getSupportFragmentManager().getBackStackEntryCount()==0){
                 super.onBackPressed();
+            }
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity__main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        switch (id){
+            case R.id.nav_settings:
+                break;
+            case R.id.nav_user_settings:
+                break;
+            case R.id.nav_logout:
+                break;
+            default:
+                break;
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         assert drawer != null;
         drawer.closeDrawer(GravityCompat.START);

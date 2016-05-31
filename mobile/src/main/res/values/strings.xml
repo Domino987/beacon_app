@@ -11,5 +11,21 @@
     <string name="machinesInReach">machines in reach</string>
     <string name="otherMachnies">other machines</string>
     <string name="beaconsForProduction">beacons for production</string>
+    <string name="orderDetails">order details</string>
+    <string name="machineDetails">machine details</string>
+    <string name="beacon">beacon</string>
+    <string name="orderID">order ID</string>
+    <string name="machineID">machine ID</string>
+    <string name="name">name</string>
+    <string name="description">description</string>
+    <string name="dueDate">due date</string>
+    <string name="databaseMachine">machine from database</string>
+    <string name="scanMachine">machine from scan</string>
+    <string name="newOrder">new order</string>
+    <string name="newMachine">new machine</string>
+    <string name="pickDueDate">pick a due date</string>
+    <string name="save">Save</string>
+    <string name="userSettings">User Settings</string>
+    <string name="logout">Logout</string>
 
 </resources>

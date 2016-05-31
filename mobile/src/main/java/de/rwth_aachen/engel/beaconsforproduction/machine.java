@@ -3,12 +3,13 @@ package de.rwth_aachen.engel.beaconsforproduction;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Domino on 27.05.2016.
  */
-public class machine {
+public class machine implements Serializable{
     public int getID() {
         return ID;
     }

@@ -13,24 +13,23 @@ public class fragment_main extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(
                 R.layout.fragment_main, container, false);
-        Button machines = (Button) view.findViewById(R.id.machinesButton);
-        Button orders = (Button) view.findViewById(R.id.ordersButton);
+        android.support.v7.widget.CardView machines = (android.support.v7.widget.CardView) view.findViewById(R.id.machinesButton);
+        android.support.v7.widget.CardView orders = (android.support.v7.widget.CardView) view.findViewById(R.id.ordersButton);
         machines.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new fragment_orders();
+                Fragment fragment = new fragment_machines();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.fragmentMainContainer, fragment);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 ft.addToBackStack(null);
-                ((Activity_Main)getActivity()).setUpArrow(getString(R.string.orders));
                 ft.commit();
             }
         });
         orders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new fragment_machines();
+                Fragment fragment = new fragment_orders();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.fragmentMainContainer, fragment);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);

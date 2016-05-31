@@ -3,12 +3,13 @@ package de.rwth_aachen.engel.beaconsforproduction;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Domino on 27.05.2016.
  */
-public class order {
+public class order implements Serializable{
     public int getID() {
         return ID;
     }
