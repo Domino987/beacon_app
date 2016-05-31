@@ -20,7 +20,6 @@ class Downloader {
             connection.setRequestProperty("ZUMO-API-VERSION", "2.0.0");
 
             connection.setUseCaches(false);
-            connection.setDoOutput(true);
 
             //Get Response
             InputStream is = connection.getInputStream();
