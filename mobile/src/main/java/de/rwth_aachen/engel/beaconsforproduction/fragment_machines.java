@@ -86,7 +86,7 @@ public class fragment_machines extends Fragment{
             beaconsInReach.add(machineItem);
             beaconsInReach.add(machineItem);
             beaconsInReach.add(machineItem);
-            beaconAdapter.OnItemClickListener listener = new beaconAdapter.OnItemClickListener() {
+            Adapter_Beacons.OnItemClickListener listener = new Adapter_Beacons.OnItemClickListener() {
                 @Override
                 public void onItemClick(machine item) {
                     Fragment fragment = new fragment_detailview_machine();
@@ -104,11 +104,11 @@ public class fragment_machines extends Fragment{
             };
             RecyclerView inReachList= (RecyclerView) view.findViewById(R.id.beaconsInReachList);
             inReachList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-            beaconAdapter inAdapter = new beaconAdapter(beaconsInReach, listener);
+            Adapter_Beacons inAdapter = new Adapter_Beacons(beaconsInReach, listener);
             inReachList.setAdapter(inAdapter);
             RecyclerView otherList= (RecyclerView) view.findViewById(R.id.otherBeaconsList);
             otherList.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-            inAdapter = new beaconAdapter(beaconsInReach,listener);
+            inAdapter = new Adapter_Beacons(beaconsInReach,listener);
             otherList.setAdapter(inAdapter);
             return view;
         }

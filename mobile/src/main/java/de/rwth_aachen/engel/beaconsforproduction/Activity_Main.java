@@ -1,4 +1,5 @@
 package de.rwth_aachen.engel.beaconsforproduction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -18,7 +19,7 @@ import com.estimote.sdk.eddystone.Eddystone;
 import java.util.List;
 
 public class Activity_Main extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener{
 
     //Beacon Specific
     private BeaconManager beaconManager;
@@ -41,6 +42,7 @@ public class Activity_Main extends AppCompatActivity
         fragmentTransaction.commit();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.WZL);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -50,6 +52,9 @@ public class Activity_Main extends AppCompatActivity
             toggle.syncState();
             assert drawer != null;
             drawer.addDrawerListener(toggle);
+            final android.support.design.widget.NavigationView mDrawerLayout = (NavigationView) findViewById(R.id.nav_view);
+            assert mDrawerLayout != null;
+            mDrawerLayout.setNavigationItemSelectedListener(this);
             getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
                 @Override
                 public void onBackStackChanged() {
@@ -76,7 +81,6 @@ public class Activity_Main extends AppCompatActivity
                     }
                 }
             });}
-
         beaconManager = new BeaconManager(getApplicationContext());
         beaconManager.setEddystoneListener(new BeaconManager.EddystoneListener() {
             public void onEddystonesFound(List<Eddystone> eddystones) {
@@ -88,7 +92,6 @@ public class Activity_Main extends AppCompatActivity
     @Override
     public void onStart(){
         super.onStart();
-
         SystemRequirementsChecker.checkWithDefaultDialogs(this);
         beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
             @Override public void onServiceReady() {
@@ -96,7 +99,6 @@ public class Activity_Main extends AppCompatActivity
             }
         });
     }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -125,16 +127,24 @@ public class Activity_Main extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        Intent intent = null;
         switch (id){
             case R.id.nav_settings:
+                intent=new Intent(this, Activity_Settings.class);
                 break;
             case R.id.nav_user_settings:
+                intent=new Intent(this, Activity_UserSettings.class);
                 break;
             case R.id.nav_logout:
+                onBackPressed();
                 break;
             default:
                 break;
         }
+        if(intent!=null)
+            startActivity(intent);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         assert drawer != null;
         drawer.closeDrawer(GravityCompat.START);

@@ -11,10 +11,10 @@ import java.util.List;
 /**
  * Created by Domino on 27.05.2016.
  */
-public class beaconAdapter extends RecyclerView.Adapter<beaconAdapter.ViewHolder> {
+public class Adapter_Beacons extends RecyclerView.Adapter<Adapter_Beacons.ViewHolder> {
     private final List items;
     private final OnItemClickListener listener;
-    public beaconAdapter(List items, OnItemClickListener listener){
+    public Adapter_Beacons(List items, OnItemClickListener listener){
         this.items=items;
         this.listener = listener;
     }
@@ -23,13 +23,13 @@ public class beaconAdapter extends RecyclerView.Adapter<beaconAdapter.ViewHolder
         void onItemClick(order item);
     }
     @Override
-    public beaconAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public Adapter_Beacons.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_item, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(beaconAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(Adapter_Beacons.ViewHolder holder, int position) {
         if (!items.isEmpty()&&items.get(position) instanceof machine) {
             holder.bindMachine((machine)items.get(position), listener);
         }

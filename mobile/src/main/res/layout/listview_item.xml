@@ -5,6 +5,7 @@
     android:background="@color/white"
     android:padding="5dp"
     android:clickable="true"
+    android:focusable="true"
     android:layout_margin="5dp"
     android:id="@+id/listviewItemContainer">
     <TextView
@@ -12,7 +13,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/listViewItemText"
         android:textColor="@color/white"
+        android:background="?android:attr/selectableItemBackground"
         android:gravity="center"
-        android:focusable="true"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>

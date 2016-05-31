@@ -3,15 +3,18 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_settings"
+            android:checkable="false"
             android:icon="@drawable/ic_menu_settings"
             android:title="@string/action_settings" />
         <item
             android:id="@+id/nav_user_settings"
             android:icon="@drawable/ic_menu_user"
+            android:checkable="false"
             android:title="@string/userSettings" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_menu_logout"
+            android:checkable="false"
             android:title="@string/logout" />
     </group>
 </menu>
