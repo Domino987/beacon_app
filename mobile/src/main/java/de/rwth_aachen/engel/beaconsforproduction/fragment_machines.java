@@ -37,8 +37,9 @@ public class fragment_machines extends Fragment{
             Adapter_Beacons.OnItemClickListener listener = new Adapter_Beacons.OnItemClickListener() {
                 @Override
                 public void onItemClick(machine item) {
-                    Fragment fragment = new fragment_detailview_machine();
-                    getActivity().getIntent().putExtra("machine",item);
+                    Fragment fragment = new fragment_detailview();
+                    getActivity().getIntent().putExtra(Activity_Main.INTENT_CLASS,0);
+                    getActivity().getIntent().putExtra(Activity_Main.INDEX,((Activity_Main)getActivity()).getMachineList().indexOf(item));
                     FragmentTransaction ft = getFragmentManager().beginTransaction();
                     ft.replace(R.id.fragmentMainContainer, fragment);
                     ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);

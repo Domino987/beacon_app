@@ -39,5 +39,6 @@
     <string name="register">Register</string>
     <string name="passwordRepeat">Repeat password</string>
     <string name="noConnection">No Internet Connection</string>
+    <string name="edit">Edit</string>
 
 </resources>

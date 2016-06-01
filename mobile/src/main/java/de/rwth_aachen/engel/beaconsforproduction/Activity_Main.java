@@ -30,6 +30,8 @@ import java.util.concurrent.ExecutionException;
 public class Activity_Main extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
+    public static final String INTENT_CLASS = "intent_class";
+    public static final String INDEX = "intent_index";
     //Beacon Specific
     private BeaconManager beaconManager;
     private String scanId;

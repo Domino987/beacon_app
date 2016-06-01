@@ -37,4 +37,5 @@
     <string name="register">Registrieren</string>
     <string name="passwordRepeat">Passwort wiederholen</string>
     <string name="noConnection">Keine Internetverbindung</string>
+    <string name="edit">Bearbeiten</string>
 </resources>

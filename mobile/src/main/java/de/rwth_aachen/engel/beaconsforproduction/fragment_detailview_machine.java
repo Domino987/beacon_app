@@ -18,17 +18,12 @@ public class fragment_detailview_machine extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(
                 R.layout.fragment_detailview_machine, container, false);
-        Intent i = getActivity().getIntent();
-        machine = (machine) i.getSerializableExtra("machine");
+        machine = (de.rwth_aachen.engel.beaconsforproduction.machine) getArguments().getSerializable("position");
         ((TextView)view.findViewById(R.id.detailViewBeacon)).setText(machine.getBeacon());
         ((TextView)view.findViewById(R.id.detailViewDescription)).setText(machine.getDescription());
         ((TextView)view.findViewById(R.id.detailViewName)).setText(machine.getName());
         ((TextView)view.findViewById(R.id.detailViewID)).setText(machine.getID()+"");
         return view;
     }
-    @Override
-    public void onResume() {
-        super.onResume();
-        ((Activity_Main)getActivity()).setUpArrow(machine.getName());
-    }
+
 }
