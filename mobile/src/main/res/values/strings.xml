@@ -38,5 +38,6 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="passwordRepeat">Repeat password</string>
+    <string name="noConnection">No Internet Connection</string>
 
 </resources>
