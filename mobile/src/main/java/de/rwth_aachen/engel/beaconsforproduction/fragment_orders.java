@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.List;
+
 
 /**
  * Created by Domino on 26.05.2016.
@@ -20,6 +22,9 @@ public class fragment_orders extends Fragment{
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(
                     R.layout.beacon_list, container, false);
+
+            final List<order> orderList = ((Activity_Main)getActivity()).getOrderList();
+
             Adapter_Beacons.OnItemClickListener listener = new Adapter_Beacons.OnItemClickListener() {
                 @Override
                 public void onItemClick(machine item) {
@@ -28,7 +33,7 @@ public class fragment_orders extends Fragment{
                 public void onItemClick(order item) {
                     Fragment fragment = new fragment_detailview();
                     getActivity().getIntent().putExtra(Activity_Main.INTENT_CLASS,1);
-                    getActivity().getIntent().putExtra(Activity_Main.INDEX,((Activity_Main)getActivity()).getOrderList().indexOf(item));
+                    getActivity().getIntent().putExtra(Activity_Main.INDEX,(orderList.indexOf(item)));
                     setHasOptionsMenu(true);
                     FragmentTransaction ft = getFragmentManager().beginTransaction();
                     ft.replace(R.id.fragmentMainContainer, fragment);
@@ -37,10 +42,12 @@ public class fragment_orders extends Fragment{
                     ft.commit();
                 }
             };
-            if(((Activity_Main)getActivity()).getMachineList() != null){
+
+
+            if(orderList != null){
                 RecyclerView inReachList= (RecyclerView) view.findViewById(R.id.beaconsInReachList);
                 inReachList.setLayoutManager(new GridLayoutManager(getActivity(), 1));
-                Adapter_Beacons inAdapter = new Adapter_Beacons(((Activity_Main)getActivity()).getOrderList(),((Activity_Main)getActivity()).getOrderList(), listener,getString(R.string.ordersInReach),getString(R.string.otherOrders));
+                Adapter_Beacons inAdapter = new Adapter_Beacons(orderList, orderList, listener,getString(R.string.ordersInReach),getString(R.string.otherOrders));
                 inReachList.setAdapter(inAdapter);
             }
             else{

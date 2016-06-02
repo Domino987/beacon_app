@@ -44,6 +44,7 @@ public class Activity_Main extends AppCompatActivity
     Toolbar toolbar;
     DrawerLayout drawer;
     View view;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +98,7 @@ public class Activity_Main extends AppCompatActivity
         beaconManager = new BeaconManager(getApplicationContext());
         beaconManager.setEddystoneListener(new BeaconManager.EddystoneListener() {
             public void onEddystonesFound(List<Eddystone> eddystones) {
-                Snackbar.make(view,"Nearby Eddystone beacons: " + eddystones,Snackbar.LENGTH_LONG).show();
+                Snackbar.make(view,"Nearby Eddystone beacons: " + eddystones, Snackbar.LENGTH_LONG).show();
             }
         });
     }
@@ -181,7 +182,7 @@ public class Activity_Main extends AppCompatActivity
             setTitle(title);
         }
     }
-    public List<machine> getMachineList(){
+    public List <machine> getMachineList(){
         if(machineList == null){
             try {
                 setMachineItems(new BeaconApiDownloader(this).execute().get());
@@ -203,10 +204,10 @@ public class Activity_Main extends AppCompatActivity
     }
     public void setMachineItems(String result){
         try{
-            if(result!=null){
+            if(result != null){
                 machineList = new ArrayList<>();
                 JSONArray jArray = new JSONArray(result);
-                for(int i = 0;i<jArray.length();i++){
+                for(int i = 0; i < jArray.length(); i++){
                     JSONObject jsonObject = new JSONObject(jArray.get(i).toString());
                     machine m = new machine();
                     m.setName(jsonObject.getString("name"));
