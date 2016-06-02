@@ -12,6 +12,8 @@ import android.support.v4.app.Fragment;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.List;
+
 
 /**
  * Created by Domino on 26.05.2016.
@@ -22,12 +24,14 @@ public class fragment_machines extends Fragment{
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(
                     R.layout.beacon_list, container, false);
+
+            final List<machine> machinesList =  ((Activity_Main)getActivity()).getMachineList();
             Adapter_Beacons.OnItemClickListener listener = new Adapter_Beacons.OnItemClickListener() {
                 @Override
                 public void onItemClick(machine item) {
                     Fragment fragment = new fragment_detailview();
                     getActivity().getIntent().putExtra(Activity_Main.INTENT_CLASS,0);
-                    getActivity().getIntent().putExtra(Activity_Main.INDEX,((Activity_Main)getActivity()).getMachineList().indexOf(item));
+                    getActivity().getIntent().putExtra(Activity_Main.INDEX,(machinesList.indexOf(item)));
                     FragmentTransaction ft = getFragmentManager().beginTransaction();
                     ft.replace(R.id.fragmentMainContainer, fragment);
                     ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -38,10 +42,11 @@ public class fragment_machines extends Fragment{
                 public void onItemClick(order item) {
                 }
             };
-            if(((Activity_Main)getActivity()).getMachineList() != null){
+
+            if(machinesList != null){
                 RecyclerView inReachList= (RecyclerView) view.findViewById(R.id.beaconsInReachList);
                 inReachList.setLayoutManager(new GridLayoutManager(getActivity(), 1));
-                Adapter_Beacons inAdapter = new Adapter_Beacons(((Activity_Main)getActivity()).getMachineList(),((Activity_Main)getActivity()).getMachineList(), listener,getString(R.string.machinesInReach),getString(R.string.otherMachnies));
+                Adapter_Beacons inAdapter = new Adapter_Beacons(machinesList, machinesList, listener,getString(R.string.machinesInReach),getString(R.string.otherMachines));
                 inReachList.setAdapter(inAdapter);
             }
             else{
