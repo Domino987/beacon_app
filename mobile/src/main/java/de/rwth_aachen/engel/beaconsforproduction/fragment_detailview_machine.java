@@ -1,6 +1,5 @@
 package de.rwth_aachen.engel.beaconsforproduction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -18,17 +17,13 @@ public class fragment_detailview_machine extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(
                 R.layout.fragment_detailview_machine, container, false);
-        Intent i = getActivity().getIntent();
-        machine = (machine) i.getSerializableExtra("machine");
+        machine = (de.rwth_aachen.engel.beaconsforproduction.machine) getArguments().getSerializable("position");
+        setHasOptionsMenu(true);
         ((TextView)view.findViewById(R.id.detailViewBeacon)).setText(machine.getBeacon());
         ((TextView)view.findViewById(R.id.detailViewDescription)).setText(machine.getDescription());
         ((TextView)view.findViewById(R.id.detailViewName)).setText(machine.getName());
         ((TextView)view.findViewById(R.id.detailViewID)).setText(machine.getID()+"");
+        ((Activity_Main)getParentFragment().getActivity()).setUpArrow(machine.getName());
         return view;
-    }
-    @Override
-    public void onResume() {
-        super.onResume();
-        ((Activity_Main)getActivity()).setUpArrow(machine.getName());
     }
 }

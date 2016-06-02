@@ -10,12 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.support.v4.app.Fragment;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by Domino on 26.05.2016.
@@ -26,19 +22,12 @@ public class fragment_machines extends Fragment{
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(
                     R.layout.beacon_list, container, false);
-            FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
-            fab.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(), R.color.purple));
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    newMachine(v);
-                }
-            });
             Adapter_Beacons.OnItemClickListener listener = new Adapter_Beacons.OnItemClickListener() {
                 @Override
                 public void onItemClick(machine item) {
-                    Fragment fragment = new fragment_detailview_machine();
-                    getActivity().getIntent().putExtra("machine",item);
+                    Fragment fragment = new fragment_detailview();
+                    getActivity().getIntent().putExtra(Activity_Main.INTENT_CLASS,0);
+                    getActivity().getIntent().putExtra(Activity_Main.INDEX,((Activity_Main)getActivity()).getMachineList().indexOf(item));
                     FragmentTransaction ft = getFragmentManager().beginTransaction();
                     ft.replace(R.id.fragmentMainContainer, fragment);
                     ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -64,13 +53,5 @@ public class fragment_machines extends Fragment{
     public void onResume() {
         super.onResume();
         ((Activity_Main)getActivity()).setUpArrow(getString(R.string.machines));
-    }
-    public void newMachine(View v){
-        Fragment fragment = new fragment_newMachine();
-        android.support.v4.app.FragmentManager fm = getFragmentManager();
-        android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentMainContainer,fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
     }
 }

@@ -29,6 +29,7 @@ public class  BeaconApiDownloader extends AsyncTask <String, Integer, String> {
         return result;
     }
     protected void onPostExecute(String result) {
-        ((Activity_Main)con).setItems(result);
+        ((Activity_Main)con).setMachineItems(result);
+        ((Activity_Main)con).setOrderItems(result);
     }
 }

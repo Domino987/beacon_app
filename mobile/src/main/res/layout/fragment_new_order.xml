@@ -78,19 +78,12 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
+                android:layout_weight="1"
                 android:focusable="false"
                 android:clickable="false"
                 android:hint="@string/pickDueDate"
                 android:inputType="date"
                 android:id="@+id/detailViewDate"/>
-            <ImageButton
-                android:id="@+id/calendarButton"
-                android:layout_width="0dp"
-                android:layout_weight="0.5"
-                android:layout_height="wrap_content"
-                android:cropToPadding="true"
-                android:src="@android:drawable/ic_menu_my_calendar" />
         </TableRow>
     </TableLayout>
     <Button

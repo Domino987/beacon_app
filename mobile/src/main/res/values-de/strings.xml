@@ -19,7 +19,7 @@
     <string name="machines">Maschinen</string>
     <string name="machinesInReach">Maschinen in Reichweite</string>
     <string name="name">Name</string>
-    <string name="navigation_drawer_close"></string>
+    <string name="navigation_drawer_close">Schliesse Navigation</string>
     <string name="newMachine">Neue Maschine</string>
     <string name="newOrder">Neuer Auftrag</string>
     <string name="orderDetails">Auftragdetails</string>
@@ -37,4 +37,6 @@
     <string name="register">Registrieren</string>
     <string name="passwordRepeat">Passwort wiederholen</string>
     <string name="noConnection">Keine Internetverbindung</string>
+    <string name="edit">Bearbeiten</string>
+    <string name="navigation_drawer_open">Öffne Navigation</string>
 </resources>

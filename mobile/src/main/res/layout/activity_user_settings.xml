@@ -38,6 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/editTextFirstName"
+                    android:focusable="false"
                     android:layout_weight="1"
                     android:hint="@string/firstName"/>
             </TableRow>
@@ -53,6 +54,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/editTextLastName"
+                    android:focusable="false"
                     android:layout_weight="1"
                     android:hint="@string/lastName"/>
             </TableRow>
@@ -68,6 +70,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:focusable="false"
                     android:inputType="textEmailAddress"
                     android:id="@+id/editTextEmail"
                     android:hint="@string/email"/>
@@ -79,10 +82,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/name"/>
+                    android:text="@string/password"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
                     android:layout_weight="1"
                     android:id="@+id/editTextPassword"
                     android:hint="@string/password"
@@ -100,6 +104,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:padding="5dp"
                     android:id="@+id/editTextCompany"
                     android:hint="@string/company"/>
             </TableRow>
