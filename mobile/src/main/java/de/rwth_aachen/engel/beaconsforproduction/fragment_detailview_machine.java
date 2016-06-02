@@ -23,7 +23,6 @@ public class fragment_detailview_machine extends Fragment{
         ((TextView)view.findViewById(R.id.detailViewDescription)).setText(machine.getDescription());
         ((TextView)view.findViewById(R.id.detailViewName)).setText(machine.getName());
         ((TextView)view.findViewById(R.id.detailViewID)).setText(machine.getID()+"");
-        ((Activity_Main)getParentFragment().getActivity()).setUpArrow(machine.getName());
         return view;
     }
 }
