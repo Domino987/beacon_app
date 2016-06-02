@@ -21,11 +21,6 @@ public class fragment_newMachine extends android.support.v4.app.Fragment{
             });
             return view;
         }
-        @Override
-        public void onResume(){
-            super.onResume();
-            ((Activity_Main)getActivity()).setUpArrow(getString(R.string.newOrder));
-        }
         public void saveMachine(View v){
             getActivity().onBackPressed();
         }

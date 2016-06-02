@@ -1,5 +1,6 @@
 package de.rwth_aachen.engel.beaconsforproduction;
 
+import android.content.SharedPreferences;
 import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by Domino on 31.05.2016.
@@ -16,6 +21,7 @@ import android.widget.EditText;
 public class Activity_UserSettings extends AppCompatActivity {
     EditText email,lastName,firstName,password;
     boolean isStarted;
+    SharedPreferences prefs;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -31,7 +37,20 @@ public class Activity_UserSettings extends AppCompatActivity {
             firstName = (EditText)findViewById(R.id.editTextFirstName);
             lastName = (EditText)findViewById(R.id.editTextLastName);
             password = (EditText)findViewById(R.id.editTextPassword);
+            TextView company = (TextView)findViewById(R.id.editTextCompany);
             isStarted = false;
+            prefs = getSharedPreferences("user",MODE_PRIVATE);
+            try {
+                JSONObject json = new JSONObject(prefs.getString("user",""));
+                email.setText(json.getString("email"));
+                firstName.setText(json.getString("firstName"));
+                lastName.setText(json.getString("lastName"));
+                password.setText(json.getString("password"));
+                company.setText(json.getString("company"));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
     @Override
@@ -51,6 +70,19 @@ public class Activity_UserSettings extends AppCompatActivity {
         password.setClickable(isStarted);
         password.setFocusableInTouchMode(isStarted);
         firstName.requestFocus();
+        if(!isStarted){
+            JSONObject json = new JSONObject();
+            try {
+                json.put("firstName",firstName.getText());
+                json.put("lastName",lastName.getText());
+                json.put("email",email.getText());
+                json.put("password",password.getText());
+                json.put("company","WZL");
+                prefs.edit().putString("user", json.toString()).apply();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
         isStarted = !isStarted;
         return super.onPrepareOptionsMenu(menu);
     }

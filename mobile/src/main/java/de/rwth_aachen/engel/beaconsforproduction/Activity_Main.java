@@ -5,6 +5,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -16,6 +18,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.estimote.sdk.*;
 import com.estimote.sdk.eddystone.Eddystone;
 
@@ -36,16 +41,17 @@ public class Activity_Main extends AppCompatActivity
     private BeaconManager beaconManager;
     private String scanId;
 
-
-
     List<machine> machineList;
+    List<order> orderList;
     ActionBarDrawerToggle toggle;
     Toolbar toolbar;
     DrawerLayout drawer;
+    View view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        view = findViewById(R.id.coordinatorLayout);
         Fragment mainFragment = new fragment_main();
         android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
@@ -94,7 +100,7 @@ public class Activity_Main extends AppCompatActivity
         beaconManager = new BeaconManager(getApplicationContext());
         beaconManager.setEddystoneListener(new BeaconManager.EddystoneListener() {
             public void onEddystonesFound(List<Eddystone> eddystones) {
-                Log.d("Eddystone", "Nearby Eddystone beacons: " + eddystones);
+                Snackbar.make(view,"Nearby Eddystone beacons: " + eddystones,Snackbar.LENGTH_LONG).show();
             }
         });
     }
@@ -117,10 +123,10 @@ public class Activity_Main extends AppCompatActivity
         if (networkInfo != null && networkInfo.isConnected()) {
             new BeaconApiDownloader(this).execute();
         }
-
+        TabLayout tabLayout= (TabLayout) findViewById(R.id.tabs);
+        assert tabLayout != null;
+        tabLayout.setVisibility(View.GONE);
     }
-
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -138,6 +144,7 @@ public class Activity_Main extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        setTitle(getSupportActionBar().getTitle());
         return true;
     }
 
@@ -150,7 +157,7 @@ public class Activity_Main extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fm.beginTransaction().commit();
         Intent intent = null;
         switch (id){
             case R.id.nav_settings:
@@ -174,20 +181,30 @@ public class Activity_Main extends AppCompatActivity
     }
     public void setUpArrow(String title){
         if(getSupportActionBar()!=null) {
-            getSupportActionBar().setTitle(title);
+            setTitle(title);
         }
     }
     public List<machine> getMachineList(){
         if(machineList == null){
             try {
-                setItems(new BeaconApiDownloader(this).execute().get());
+                setMachineItems(new BeaconApiDownloader(this).execute().get());
             } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
         return machineList;
     }
-    public void setItems(String result){
+    public List<order> getOrderList(){
+        if(orderList == null){
+            try {
+                setOrderItems(new BeaconApiDownloader(this).execute().get());
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+        return orderList;
+    }
+    public void setMachineItems(String result){
         try{
             if(result!=null){
                 machineList = new ArrayList<>();
@@ -202,5 +219,29 @@ public class Activity_Main extends AppCompatActivity
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+    public void setOrderItems(String result){
+        try{
+            if(result!=null){
+                orderList = new ArrayList<>();
+                JSONArray jArray = new JSONArray(result);
+                for(int i = 0;i<jArray.length();i++){
+                    JSONObject jsonObject = new JSONObject(jArray.get(i).toString());
+                    order o = new order();
+                    o.setName(jsonObject.getString("name"));
+                    orderList.add(o);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+    public void newBeacon(View v){
+        Fragment fragment = new fragment_newBeacon();
+        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentMainContainer,fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }
