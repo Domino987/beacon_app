@@ -18,7 +18,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
-    <LinearLayout
+    <ScrollView
         android:orientation="vertical" android:layout_width="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_height="match_parent"
@@ -30,12 +30,12 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent">
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/firstName"/>
                 <EditText
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/editTextFirstName"
                     android:focusable="false"
@@ -46,12 +46,12 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent">
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/lastName"/>
                 <EditText
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/editTextLastName"
                     android:focusable="false"
@@ -62,12 +62,12 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent">
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/email"/>
                 <EditText
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:focusable="false"
@@ -79,12 +79,12 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent">
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/password"/>
                 <EditText
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:focusable="false"
                     android:layout_weight="1"
@@ -96,12 +96,12 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent">
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/company"/>
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="5dp"
@@ -109,7 +109,6 @@
                     android:hint="@string/company"/>
             </TableRow>
         </TableLayout>
-
-    </LinearLayout>
+    </ScrollView>
 
 </android.support.design.widget.CoordinatorLayout>

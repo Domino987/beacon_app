@@ -1,6 +1,7 @@
 package de.rwth_aachen.engel.beaconsforproduction;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
@@ -8,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -51,7 +51,7 @@ public class fragment_orders extends Fragment{
                 inReachList.setAdapter(inAdapter);
             }
             else{
-                Toast.makeText(getActivity(), getString(R.string.noConnection), Toast.LENGTH_SHORT).show();
+                Snackbar.make(view,getString(R.string.noConnection),Snackbar.LENGTH_SHORT);
             }
             return view;
         }
