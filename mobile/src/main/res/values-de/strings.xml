@@ -26,7 +26,6 @@
     <string name="orderID">Auftrags ID</string>
     <string name="orders">Aufträge</string>
     <string name="ordersInReach">Aufträge in Reichweite</string>
-    <string name="otherMachnies">Andere Maschinen</string>
     <string name="otherOrders">Andere Aufträge</string>
     <string name="password">Passwort</string>
     <string name="pickDueDate">Fertigstellungsdatum</string>
@@ -39,4 +38,5 @@
     <string name="noConnection">Keine Internetverbindung</string>
     <string name="edit">Bearbeiten</string>
     <string name="navigation_drawer_open">Öffne Navigation</string>
+    <string name="otherMachines">Andere Maschinen</string>
 </resources>
