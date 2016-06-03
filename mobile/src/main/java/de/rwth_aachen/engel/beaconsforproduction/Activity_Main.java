@@ -27,6 +27,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -35,6 +37,7 @@ public class Activity_Main extends AppCompatActivity
 
     public static final String INTENT_CLASS = "intent_class";
     public static final String INDEX = "intent_index";
+    public static final String[] JSONKEYS = {"m_Item1","m_Item2","m_Item3"};
     //Beacon Specific
     private BeaconManager beaconManager;
     private String scanId;
@@ -185,7 +188,7 @@ public class Activity_Main extends AppCompatActivity
     public List <machine> getMachineList(){
         if(machineList == null){
             try {
-                setMachineItems(new BeaconApiDownloader(this).execute().get());
+                setItems(new BeaconApiDownloader(this).execute().get());
             } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
@@ -195,40 +198,51 @@ public class Activity_Main extends AppCompatActivity
     public List<order> getOrderList(){
         if(orderList == null){
             try {
-                setOrderItems(new BeaconApiDownloader(this).execute().get());
+                setItems(new BeaconApiDownloader(this).execute().get());
             } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
         return orderList;
     }
-    public void setMachineItems(String result){
-        try{
+    public void setItems(String result){
+        if(result!=null){
+            orderList = new ArrayList<>();
             machineList = new ArrayList<>();
-            JSONArray jArray = new JSONArray(result);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
+            JSONArray jArray = null;
+            try {
+                jArray = new JSONArray(result);
+                for(int i = 0;i<jArray.length();i++){
+                    JSONObject fullItem = jArray.optJSONObject(i);
+                    if(fullItem.optString(JSONKEYS[1]).equals("Machine")) {
+                        machine machine = parseMachine(fullItem.optJSONObject(JSONKEYS[2]));
+                        machine.setBeacon(fullItem.optJSONObject(JSONKEYS[0]).optString("name"));
+                        machineList.add(machine);
+                    }
+                    else if(fullItem.optString(JSONKEYS[1]).equals("Job")) {
+                        order order = parseOrder(fullItem.optJSONObject(JSONKEYS[2]));
+                        order.setBeacon(fullItem.optJSONObject(JSONKEYS[0]).optString("name"));
+                        orderList.add(order);
+                    }
+                }
+            }catch (JSONException e1) {
+                e1.printStackTrace();
+            }
         }
     }
-    public void setOrderItems(String result){
-        try{
-            if(result!=null){
-                orderList = new ArrayList<>();
-                JSONArray jArray = new JSONArray(result);
-                for(int i = 0;i<jArray.length();i++){
-                    JSONObject array = new JSONObject(jArray.get(i).toString());
-                    JSONObject jsonObject = new JSONObject(array.get("m_Item1").toString());
-                    Log.i("items" + i, jsonObject.toString());
-                    order o = new order();
-                    if (jsonObject.has("name"))
-                        o.setName(jsonObject.getString("name"));
-                    orderList.add(o);
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+    public order parseOrder(JSONObject jsonString){
+        order item = new order();
+        item.setName(jsonString.optString("name"));
+        item.setID(jsonString.optString("id"));
+        item.setDescription(jsonString.optString("description"));
+        return item;
+    }
+    public machine parseMachine(JSONObject jsonString){
+        machine item = new machine();
+        item.setName(jsonString.optString("name"));
+        item.setID(jsonString.optString("id"));
+        item.setDescription(jsonString.optString("description"));
+        return item;
     }
     public void newBeacon(View v){
         Fragment fragment = new fragment_newBeacon();

@@ -40,5 +40,8 @@
     <string name="passwordRepeat">Repeat password</string>
     <string name="noConnection">No Internet Connection</string>
     <string name="edit">Edit</string>
-
+    <string-array name="units">
+        <item>meter</item>
+        <item>feet</item>
+    </string-array>
 </resources>

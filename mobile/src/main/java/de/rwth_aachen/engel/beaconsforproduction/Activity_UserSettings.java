@@ -110,8 +110,5 @@ public class Activity_UserSettings extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(isStarted){
-            //savehere;
-        }
     }
 }

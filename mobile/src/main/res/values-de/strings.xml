@@ -39,4 +39,8 @@
     <string name="edit">Bearbeiten</string>
     <string name="navigation_drawer_open">Öffne Navigation</string>
     <string name="otherMachines">Andere Maschinen</string>
+    <string-array name="units">
+        <item>Meter</item>
+        <item>Fuß</item>
+    </string-array>
 </resources>

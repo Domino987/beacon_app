@@ -116,7 +116,8 @@ public class Adapter_Beacons extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
-                    listener.onItemClick(item);
+                    if(listener != null)
+                        listener.onItemClick(item);
                 }
             });
         }

@@ -25,16 +25,24 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_height="match_parent">
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="65dp"
             android:padding="15dp"
-            android:layout_weight="1"
+            android:layout_weight="0.7"
             android:text="@string/distance"/>
-        <TextView
-            android:layout_width="match_parent"
+        <NumberPicker
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:id="@+id/numberPickerSettings"
+            android:layout_weight="0.5"
+            android:padding="15dp"/>
+        <android.support.v7.widget.AppCompatSpinner
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="65dp"
             android:padding="15dp"
-            android:text="@string/filler"/>
+            android:id="@+id/spinnerUnit"
+            android:layout_weight="0.5"/>
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

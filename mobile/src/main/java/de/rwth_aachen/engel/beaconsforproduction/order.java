@@ -10,11 +10,11 @@ import java.util.Date;
  * Created by Domino on 27.05.2016.
  */
 public class order implements Serializable{
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
@@ -74,21 +74,21 @@ public class order implements Serializable{
         this.scanMachine = scanMachine;
     }
 
-    private int ID;
     private int temperatur;
     private String name;
+    private String ID;
     private String beacon;
     private String description;
     private Date dueDate;
     private machine databaseMachine;
     private machine scanMachine;
     public order(){
-        ID=temperatur=0;
-        name=beacon=description="";
+        temperatur=0;
+        name=beacon=description=ID="";
         dueDate=new Date();
         databaseMachine=scanMachine=null;
     }
-    public order(int ID,int temperatur,String name,String beacon,String description,Date dueDate,machine databaseMachine,machine scanMachine){
+    public order(String ID,int temperatur,String name,String beacon,String description,Date dueDate,machine databaseMachine,machine scanMachine){
         this.ID=ID;
         this.temperatur = temperatur;
         this.name = name;
@@ -100,7 +100,7 @@ public class order implements Serializable{
     }
     public order(JSONObject json){
         try {
-            this.ID=json.getInt("ID");
+            this.ID=json.getString("ID");
             this.temperatur=json.getInt("temperatur");
             this.name=json.getString("name");
             this.beacon=json.getString("beacon");
@@ -112,7 +112,10 @@ public class order implements Serializable{
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+    }
+    public String toString(){
+        String output = "id:"+ID+",beacon:"+beacon+",name:"+name+",descr:"+description+",databaseMachine:"+databaseMachine;
+        return output;
     }
 
 }

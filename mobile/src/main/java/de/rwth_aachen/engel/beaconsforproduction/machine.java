@@ -10,11 +10,11 @@ import java.util.List;
  * Created by Domino on 27.05.2016.
  */
 public class machine implements Serializable{
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
@@ -65,11 +65,10 @@ public class machine implements Serializable{
     public void setOtherOrders(List<order> otherOrders) {
         this.otherOrders = otherOrders;
     }
-    private int ID;
-    private String beacon,name,description;
+    private String beacon,name,description,ID;
     private List<order> databaseOrders,scanOrders,otherOrders;
 
-    public machine(int ID, String beacon, String name, String description, List<order> databaseOrders, List<order> scanOrders, List<order> otherOrders) {
+    public machine(String ID, String beacon, String name, String description, List<order> databaseOrders, List<order> scanOrders, List<order> otherOrders) {
         this.ID = ID;
         this.beacon = beacon;
         this.name = name;
@@ -88,5 +87,14 @@ public class machine implements Serializable{
     }
     public machine(){
 
+    }
+    @Override
+    public String toString(){
+        String orders = "";
+        for(order x : databaseOrders){
+            orders+=x.getName();
+        }
+        String output = "id:"+ID+",beacon:"+beacon+",name:"+name+",descr:"+description+",databaseOrder:"+orders;
+        return output;
     }
 }
