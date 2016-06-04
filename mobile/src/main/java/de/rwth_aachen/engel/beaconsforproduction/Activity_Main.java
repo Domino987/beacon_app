@@ -100,9 +100,9 @@ public class Activity_Main extends AppCompatActivity
                 }
             });}
         beaconManager = new BeaconManager(getApplicationContext());
-        beaconManager.setEddystoneListener(new BeaconManager.EddystoneListener() {
-            public void onEddystonesFound(List<Eddystone> eddystones) {
-                Snackbar.make(view,"Nearby Eddystone beacons: " + eddystones, Snackbar.LENGTH_LONG).show();
+        beaconManager.setNearableListener(new BeaconManager.NearableListener() {
+            public void onNearablesDiscovered(List<Nearable> nearables) {
+                Snackbar.make(view,"Nearby 'Nearable' beacons: " + nearables, Snackbar.LENGTH_LONG).show();
             }
         });
     }
