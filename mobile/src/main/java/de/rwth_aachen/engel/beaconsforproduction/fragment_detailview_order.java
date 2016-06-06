@@ -16,12 +16,12 @@ import java.text.DateFormat;
  */
 
 public class fragment_detailview_order extends Fragment{
-    order order;
+    Beacon order;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(
                 R.layout.fragment_detailview_order, container, false);
-        order = (de.rwth_aachen.engel.beaconsforproduction.order) getArguments().getSerializable("position");
+        order = (Beacon) getArguments().getSerializable("position");
         setHasOptionsMenu(true);
         ((TextView)view.findViewById(R.id.detailViewBeacon)).setText(order.getBeacon());
         if(order.getDatabaseMachine() != null) {

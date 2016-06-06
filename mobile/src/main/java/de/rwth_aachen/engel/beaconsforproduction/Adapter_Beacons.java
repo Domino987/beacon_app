@@ -25,8 +25,8 @@ public class Adapter_Beacons extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.listener = listener;
     }
     public interface OnItemClickListener {
-        void onItemClick(machine item);
-        void onItemClick(order item);
+        void onItemClick(Beacon item);
+
     }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -69,10 +69,10 @@ public class Adapter_Beacons extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 margin = position-(inReach.size()+2);
             }
             if (!selected.isEmpty() && selected.get(margin) instanceof machine) {
-                VHitem.bindMachine((machine)selected.get(margin), listener);
+                VHitem.bindMachine((Beacon)selected.get(margin), listener);
             }
             else if(!selected.isEmpty() && selected.get(margin) instanceof order){
-                VHitem.bindOrder((order)selected.get(margin), listener);
+                VHitem.bindOrder((Beacon)selected.get(margin), listener);
             }
         }
     }
@@ -96,7 +96,7 @@ public class Adapter_Beacons extends RecyclerView.Adapter<RecyclerView.ViewHolde
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.listViewItemText);
         }
-        public void bindMachine(final machine item, final OnItemClickListener listener) {
+        public void bindMachine(final Beacon item, final OnItemClickListener listener) {
             if(item.getName()!=null) {
                 name.setText(item.getName());
                 itemView.setTag(item);
@@ -108,7 +108,7 @@ public class Adapter_Beacons extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
             });
         }
-        public void bindOrder(final order item, final OnItemClickListener listener) {
+        public void bindOrder(final Beacon item, final OnItemClickListener listener) {
             if(item.getName()!=null) {
                 name.setText(item.getName());
                 itemView.setTag(item);

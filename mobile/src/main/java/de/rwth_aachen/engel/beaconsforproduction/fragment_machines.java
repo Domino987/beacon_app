@@ -23,10 +23,10 @@ public class fragment_machines extends Fragment{
             View view = inflater.inflate(
                     R.layout.beacon_list, container, false);
 
-            final List<machine> machinesList =  ((Activity_Main)getActivity()).getMachineList();
+            final List<Beacon> machinesList =  ((Activity_Main)getActivity()).getMachineList();
             Adapter_Beacons.OnItemClickListener listener = new Adapter_Beacons.OnItemClickListener() {
                 @Override
-                public void onItemClick(machine item) {
+                public void onItemClick(Beacon item) {
                     Fragment fragment = new fragment_detailview();
                     getActivity().getIntent().putExtra(Activity_Main.INTENT_CLASS,0);
                     getActivity().getIntent().putExtra(Activity_Main.INDEX,(machinesList.indexOf(item)));
@@ -35,9 +35,6 @@ public class fragment_machines extends Fragment{
                     ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                     ft.addToBackStack(null);
                     ft.commit();
-                }
-                @Override
-                public void onItemClick(order item) {
                 }
             };
 

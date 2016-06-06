@@ -23,14 +23,11 @@ public class fragment_orders extends Fragment{
             View view = inflater.inflate(
                     R.layout.beacon_list, container, false);
 
-            final List<order> orderList = ((Activity_Main)getActivity()).getOrderList();
+            final List<Beacon> orderList = ((Activity_Main)getActivity()).getOrderList();
 
             Adapter_Beacons.OnItemClickListener listener = new Adapter_Beacons.OnItemClickListener() {
                 @Override
-                public void onItemClick(machine item) {
-                }
-                @Override
-                public void onItemClick(order item) {
+                public void onItemClick(Beacon item) {
                     Fragment fragment = new fragment_detailview();
                     getActivity().getIntent().putExtra(Activity_Main.INTENT_CLASS,1);
                     getActivity().getIntent().putExtra(Activity_Main.INDEX,(orderList.indexOf(item)));
