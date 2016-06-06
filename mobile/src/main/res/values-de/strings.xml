@@ -43,4 +43,8 @@
         <item>Meter</item>
         <item>Fuß</item>
     </string-array>
+    <string name="noEnoughInformation">Nicht genug Daten eingegeben</string>
+    <string name="saved">gespeichert</string>
+    <string name="undo">Rückgängig</string>
+    <string name="undone">Gelöscht</string>
 </resources>

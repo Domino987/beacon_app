@@ -14,7 +14,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,10 +26,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+
+import javax.crypto.Mac;
 
 public class Activity_Main extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
@@ -42,8 +41,8 @@ public class Activity_Main extends AppCompatActivity
     private BeaconManager beaconManager;
     private String scanId;
 
-    List<machine> machineList;
-    List<order> orderList;
+    List<Machine> machineList;
+    List<Order> orderList;
     ActionBarDrawerToggle toggle;
     Toolbar toolbar;
     DrawerLayout drawer;
@@ -185,7 +184,7 @@ public class Activity_Main extends AppCompatActivity
             setTitle(title);
         }
     }
-    public List <machine> getMachineList(){
+    public List <Machine> getMachineList(){
         if(machineList == null){
             try {
                 setItems(new BeaconApiDownloader(this).execute().get());
@@ -195,7 +194,7 @@ public class Activity_Main extends AppCompatActivity
         }
         return machineList;
     }
-    public List<order> getOrderList(){
+    public List<Order> getOrderList(){
         if(orderList == null){
             try {
                 setItems(new BeaconApiDownloader(this).execute().get());
@@ -215,12 +214,12 @@ public class Activity_Main extends AppCompatActivity
                 for(int i = 0;i<jArray.length();i++){
                     JSONObject fullItem = jArray.optJSONObject(i);
                     if(fullItem.optString(JSONKEYS[1]).equals("Machine")) {
-                        machine machine = parseMachine(fullItem.optJSONObject(JSONKEYS[2]));
+                        Machine machine = parseMachine(fullItem.optJSONObject(JSONKEYS[2]));
                         machine.setBeacon(fullItem.optJSONObject(JSONKEYS[0]).optString("name"));
                         machineList.add(machine);
                     }
                     else if(fullItem.optString(JSONKEYS[1]).equals("Job")) {
-                        order order = parseOrder(fullItem.optJSONObject(JSONKEYS[2]));
+                        Order order = parseOrder(fullItem.optJSONObject(JSONKEYS[2]));
                         order.setBeacon(fullItem.optJSONObject(JSONKEYS[0]).optString("name"));
                         orderList.add(order);
                     }
@@ -230,19 +229,53 @@ public class Activity_Main extends AppCompatActivity
             }
         }
     }
-    public order parseOrder(JSONObject jsonString){
-        order item = new order();
+    public Order parseOrder(JSONObject jsonString){
+        Order item = new Order();
         item.setName(jsonString.optString("name"));
         item.setID(jsonString.optString("id"));
         item.setDescription(jsonString.optString("description"));
         return item;
     }
-    public machine parseMachine(JSONObject jsonString){
-        machine item = new machine();
+    public Machine parseMachine(JSONObject jsonString){
+        Machine item = new Machine();
         item.setName(jsonString.optString("name"));
         item.setID(jsonString.optString("id"));
         item.setDescription(jsonString.optString("description"));
         return item;
+    }
+    public void addOrder(final Order order){
+        orderList.add(order);
+        Snackbar.make(findViewById(android.R.id.content),order.getName()+" "+getString(R.string.saved),Snackbar.LENGTH_LONG).setAction(R.string.undo,new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteOrder(order);
+                Snackbar.make(view, R.string.undone, Snackbar.LENGTH_SHORT).show();
+            }
+        }).show();
+    }
+    public void deleteOrder(Order order){
+        orderList.remove(order);
+        fragment_orders frag = (fragment_orders)getSupportFragmentManager().findFragmentByTag("FRAGMENT_ORDERS");
+        if (frag != null && frag.isVisible()) {
+            frag.getAdapter().removeItem(order);
+        }
+    }
+    public void addMachine(final Machine machine){
+        machineList.add(machine);
+        Snackbar.make(findViewById(android.R.id.content),machine.getName()+" "+getString(R.string.saved),Snackbar.LENGTH_LONG).setAction(R.string.undo,new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteMachine(machine);
+                Snackbar.make(view, R.string.undone, Snackbar.LENGTH_SHORT).show();
+            }
+        }).show();
+    }
+    public void deleteMachine(Machine machine){
+        machineList.remove(machine);
+        fragment_machines frag = (fragment_machines)getSupportFragmentManager().findFragmentByTag("FRAGMENT_MACHINES");
+        if (frag != null && frag.isVisible()) {
+            frag.getAdapter().removeItem(machine);
+        }
     }
     public void newBeacon(View v){
         Fragment fragment = new fragment_newBeacon();

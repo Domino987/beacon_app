@@ -18,19 +18,20 @@ import java.util.List;
  */
 
 public class fragment_orders extends Fragment{
+    Adapter_Beacons inAdapter;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(
                     R.layout.beacon_list, container, false);
 
-            final List<order> orderList = ((Activity_Main)getActivity()).getOrderList();
+            final List<Order> orderList = ((Activity_Main)getActivity()).getOrderList();
 
             Adapter_Beacons.OnItemClickListener listener = new Adapter_Beacons.OnItemClickListener() {
                 @Override
-                public void onItemClick(machine item) {
+                public void onItemClick(Machine item) {
                 }
                 @Override
-                public void onItemClick(order item) {
+                public void onItemClick(Order item) {
                     Fragment fragment = new fragment_detailview();
                     getActivity().getIntent().putExtra(Activity_Main.INTENT_CLASS,1);
                     getActivity().getIntent().putExtra(Activity_Main.INDEX,(orderList.indexOf(item)));
@@ -42,12 +43,10 @@ public class fragment_orders extends Fragment{
                     ft.commit();
                 }
             };
-
-
             if(orderList != null){
                 RecyclerView inReachList= (RecyclerView) view.findViewById(R.id.beaconsInReachList);
                 inReachList.setLayoutManager(new GridLayoutManager(getActivity(), 1));
-                Adapter_Beacons inAdapter = new Adapter_Beacons(orderList, orderList, listener,getString(R.string.ordersInReach),getString(R.string.otherOrders));
+                inAdapter = new Adapter_Beacons(orderList, orderList, listener,getString(R.string.ordersInReach),getString(R.string.otherOrders));
                 inReachList.setAdapter(inAdapter);
             }
             else{
@@ -60,6 +59,9 @@ public class fragment_orders extends Fragment{
     public void onResume() {
         super.onResume();
         ((Activity_Main)getActivity()).setUpArrow(getString(R.string.orders));
+    }
+    public Adapter_Beacons getAdapter(){
+        return inAdapter;
     }
 }
 

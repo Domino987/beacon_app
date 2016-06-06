@@ -1,16 +1,19 @@
 package de.rwth_aachen.engel.beaconsforproduction;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -18,29 +21,36 @@ import java.util.Date;
  * Created by Dominik Engel on 27.05.2016.
  */
 public class fragment_newOrder extends Fragment {
-    EditText edit;
+    EditText editDate,editId,editName,editDescription;
+    Spinner beacon;
     Date date;
+    Order order;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(
                 R.layout.fragment_new_order, container, false);
-        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        DateFormat df = DateFormat.getDateInstance();
         setHasOptionsMenu(true);
-        edit = ((EditText)view.findViewById(R.id.detailViewDate));
+        editDate = (EditText)view.findViewById(R.id.detailViewDate);
+        editId = (EditText) view.findViewById(R.id.detailViewID);
+        editName = (EditText) view.findViewById(R.id.detailViewName);
+        editDescription = (EditText) view.findViewById(R.id.detailViewDescription);
         date = Calendar.getInstance().getTime();
-        edit.setText(df.format(date));
-        edit.setOnClickListener(new View.OnClickListener() {
+        editDate.setText(df.format(date));
+        editDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pickDueDate(v);
             }
         });
+        beacon = (Spinner) view.findViewById(R.id.detailViewBeacon);
         view.findViewById(R.id.saveButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 saveOrder(v);
             }
         });
+        setHasOptionsMenu(true);
         return view;
     }
     public void pickDueDate(View v){
@@ -50,7 +60,7 @@ public class fragment_newOrder extends Fragment {
                 Calendar newCalendar = Calendar.getInstance();
                 newCalendar.set(arg1, arg2, arg3);
                 date = newCalendar.getTime();
-                edit.setText(DateFormat.getDateInstance().format(date));
+                editDate.setText(DateFormat.getDateInstance().format(date));
             }
         };
         Calendar newCalendar = Calendar.getInstance();
@@ -59,6 +69,25 @@ public class fragment_newOrder extends Fragment {
         datepicker.show();
     }
     public void saveOrder(View v){
-        getActivity().onBackPressed();
+        order = new Order();
+        if(!editName.getText().toString().equals("")  && !editId.getText().toString().equals("")){
+            order.setName(editName.getText().toString());
+            order.setDescription(editDescription.getText().toString());
+            order.setID(editId.getText().toString());
+            order.setDueDate(date);
+            if(beacon.getSelectedItem()!= null ){
+                order.setBeacon((String) beacon.getSelectedItem());
+            }
+            else{
+                order.setBeacon("null");
+            }
+            ((Activity_Main)getActivity()).addOrder(order);
+            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            getActivity().onBackPressed();
+        }
+        else{
+            Snackbar.make(getActivity().findViewById(android.R.id.content),R.string.noEnoughInformation,Snackbar.LENGTH_SHORT).show();
+        }
     }
 }

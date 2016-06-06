@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Created by Domino on 27.05.2016.
  */
-public class order implements Serializable{
+public class Order implements Serializable{
     public String getID() {
         return ID;
     }
@@ -58,19 +58,19 @@ public class order implements Serializable{
         this.dueDate = dueDate;
     }
 
-    public machine getDatabaseMachine() {
+    public Machine getDatabaseMachine() {
         return databaseMachine;
     }
 
-    public void setDatabaseMachine(machine databaseMachine) {
+    public void setDatabaseMachine(Machine databaseMachine) {
         this.databaseMachine = databaseMachine;
     }
 
-    public machine getScanMachine() {
+    public Machine getScanMachine() {
         return scanMachine;
     }
 
-    public void setScanMachine(machine scanMachine) {
+    public void setScanMachine(Machine scanMachine) {
         this.scanMachine = scanMachine;
     }
 
@@ -80,15 +80,15 @@ public class order implements Serializable{
     private String beacon;
     private String description;
     private Date dueDate;
-    private machine databaseMachine;
-    private machine scanMachine;
-    public order(){
+    private Machine databaseMachine;
+    private Machine scanMachine;
+    public Order(){
         temperatur=0;
         name=beacon=description=ID="";
         dueDate=new Date();
         databaseMachine=scanMachine=null;
     }
-    public order(String ID,int temperatur,String name,String beacon,String description,Date dueDate,machine databaseMachine,machine scanMachine){
+    public Order(String ID, int temperatur, String name, String beacon, String description, Date dueDate, Machine databaseMachine, Machine scanMachine){
         this.ID=ID;
         this.temperatur = temperatur;
         this.name = name;
@@ -98,7 +98,7 @@ public class order implements Serializable{
         this.databaseMachine = databaseMachine;
         this.scanMachine = scanMachine;
     }
-    public order(JSONObject json){
+    public Order(JSONObject json){
         try {
             this.ID=json.getString("ID");
             this.temperatur=json.getInt("temperatur");
@@ -106,8 +106,8 @@ public class order implements Serializable{
             this.beacon=json.getString("beacon");
             this.description=json.getString("description");
             this.dueDate=new Date(json.getString("dueDate"));
-            this.databaseMachine=new machine(json.getString("databaseMachine"));
-            this.scanMachine=new machine(json.getString("scanMachine"));
+            this.databaseMachine=new Machine(json.getString("databaseMachine"));
+            this.scanMachine=new Machine(json.getString("scanMachine"));
 
         } catch (JSONException e) {
             e.printStackTrace();

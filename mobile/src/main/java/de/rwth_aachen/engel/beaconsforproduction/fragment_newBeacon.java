@@ -29,6 +29,7 @@ public class fragment_newBeacon extends Fragment {
         tabLayout.setupWithViewPager(mViewPager);
         getActivity().findViewById(R.id.fab).setVisibility(View.GONE);
         ((Activity_Main) getActivity()).setUpArrow(getString(R.string.newOrder));
+        setHasOptionsMenu(true);
         return view;
     }
 

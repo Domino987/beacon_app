@@ -40,6 +40,10 @@
     <string name="passwordRepeat">Repeat password</string>
     <string name="noConnection">No Internet Connection</string>
     <string name="edit">Edit</string>
+    <string name="saved">saved</string>
+    <string name="undo">Undo</string>
+    <string name="undone">Delete</string>
+    <string name="noEnoughInformation">Not enough information entered</string>
     <string-array name="units">
         <item>meter</item>
         <item>feet</item>

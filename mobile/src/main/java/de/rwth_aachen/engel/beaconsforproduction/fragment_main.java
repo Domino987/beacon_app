@@ -20,7 +20,7 @@ public class fragment_main extends Fragment implements View.OnClickListener{
             public void onClick(View v) {
                 Fragment fragment = new fragment_machines();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.fragmentMainContainer, fragment);
+                ft.replace(R.id.fragmentMainContainer, fragment,"FRAGMENT_MACHINES");
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 ft.addToBackStack(null);
                 ft.commit();
@@ -31,7 +31,7 @@ public class fragment_main extends Fragment implements View.OnClickListener{
             public void onClick(View v) {
                 Fragment fragment = new fragment_orders();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.fragmentMainContainer, fragment);
+                ft.replace(R.id.fragmentMainContainer, fragment,"FRAGMENT_ORDERS");
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 ft.addToBackStack(null);
                 ft.commit();

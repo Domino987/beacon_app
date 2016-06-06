@@ -4,12 +4,15 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
+
+import java.text.DecimalFormat;
 
 /**
  * Created by Domino on 31.05.2016.
@@ -31,9 +34,17 @@ public class Activity_Settings extends AppCompatActivity {
             final NumberPicker numPicker = (NumberPicker) findViewById(R.id.numberPickerSettings);
             Spinner unitSpinner = (Spinner) findViewById(R.id.spinnerUnit);
             if(numPicker != null) {
-                numPicker.setMaxValue(15);
+                String nums [] = new String[21];
+                DecimalFormat df = new DecimalFormat("#.##");
+                for(int i = 0; i <= 20 ; i++ ){
+                    String dx=df.format((i+1)*0.1);
+                    nums[i] = dx;
+                }
+                numPicker.setMaxValue(nums.length-1);
                 numPicker.setMinValue(1);
-                numPicker.setValue(prefs.getInt("range", 2));
+                numPicker.setWrapSelectorWheel(false);
+                numPicker.setDisplayedValues(nums);
+                numPicker.setValue(prefs.getInt("range", 20));
                 numPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
                     @Override
                     public void onValueChange(NumberPicker picker, int oldVal, int newVal) {

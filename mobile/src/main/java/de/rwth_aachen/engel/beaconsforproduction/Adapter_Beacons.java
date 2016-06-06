@@ -24,9 +24,31 @@ public class Adapter_Beacons extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.other=other;
         this.listener = listener;
     }
+    public void addItem(Order order){
+        inReach.add(order);
+        notifyItemInserted(inReach.indexOf(order));
+        other.add(order);
+        notifyItemInserted(other.indexOf(order));
+    }
+    public void addItem(Machine machine){
+        inReach.add(machine);
+        notifyItemInserted(inReach.indexOf(machine));
+        other.add(machine);
+        notifyItemInserted(other.indexOf(machine));
+    }
+    public void removeItem(Order order){
+        inReach.remove(order);
+        other.remove(order);
+        notifyDataSetChanged();
+    }
+    public void removeItem(Machine machine){
+        inReach.remove(machine);
+        other.remove(machine);
+        notifyDataSetChanged();
+    }
     public interface OnItemClickListener {
-        void onItemClick(machine item);
-        void onItemClick(order item);
+        void onItemClick(Machine item);
+        void onItemClick(Order item);
     }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -68,11 +90,11 @@ public class Adapter_Beacons extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 selected = other;
                 margin = position-(inReach.size()+2);
             }
-            if (!selected.isEmpty() && selected.get(margin) instanceof machine) {
-                VHitem.bindMachine((machine)selected.get(margin), listener);
+            if (!selected.isEmpty() && selected.get(margin) instanceof Machine) {
+                VHitem.bindMachine((Machine)selected.get(margin), listener);
             }
-            else if(!selected.isEmpty() && selected.get(margin) instanceof order){
-                VHitem.bindOrder((order)selected.get(margin), listener);
+            else if(!selected.isEmpty() && selected.get(margin) instanceof Order){
+                VHitem.bindOrder((Order)selected.get(margin), listener);
             }
         }
     }
@@ -96,7 +118,7 @@ public class Adapter_Beacons extends RecyclerView.Adapter<RecyclerView.ViewHolde
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.listViewItemText);
         }
-        public void bindMachine(final machine item, final OnItemClickListener listener) {
+        public void bindMachine(final Machine item, final OnItemClickListener listener) {
             if(item.getName()!=null) {
                 name.setText(item.getName());
                 itemView.setTag(item);
@@ -108,7 +130,7 @@ public class Adapter_Beacons extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
             });
         }
-        public void bindOrder(final order item, final OnItemClickListener listener) {
+        public void bindOrder(final Order item, final OnItemClickListener listener) {
             if(item.getName()!=null) {
                 name.setText(item.getName());
                 itemView.setTag(item);

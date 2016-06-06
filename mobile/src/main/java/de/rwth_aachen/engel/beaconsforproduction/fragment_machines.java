@@ -18,15 +18,16 @@ import java.util.List;
  */
 
 public class fragment_machines extends Fragment{
+    Adapter_Beacons inAdapter;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(
                     R.layout.beacon_list, container, false);
 
-            final List<machine> machinesList =  ((Activity_Main)getActivity()).getMachineList();
+            final List<Machine> machinesList =  ((Activity_Main)getActivity()).getMachineList();
             Adapter_Beacons.OnItemClickListener listener = new Adapter_Beacons.OnItemClickListener() {
                 @Override
-                public void onItemClick(machine item) {
+                public void onItemClick(Machine item) {
                     Fragment fragment = new fragment_detailview();
                     getActivity().getIntent().putExtra(Activity_Main.INTENT_CLASS,0);
                     getActivity().getIntent().putExtra(Activity_Main.INDEX,(machinesList.indexOf(item)));
@@ -37,14 +38,14 @@ public class fragment_machines extends Fragment{
                     ft.commit();
                 }
                 @Override
-                public void onItemClick(order item) {
+                public void onItemClick(Order item) {
                 }
             };
 
             if(machinesList != null){
                 RecyclerView inReachList= (RecyclerView) view.findViewById(R.id.beaconsInReachList);
                 inReachList.setLayoutManager(new GridLayoutManager(getActivity(), 1));
-                Adapter_Beacons inAdapter = new Adapter_Beacons(machinesList, machinesList, listener,getString(R.string.machinesInReach),getString(R.string.otherMachines));
+                inAdapter = new Adapter_Beacons(machinesList, machinesList, listener,getString(R.string.machinesInReach),getString(R.string.otherMachines));
                 inReachList.setAdapter(inAdapter);
             }
             else{
@@ -56,5 +57,8 @@ public class fragment_machines extends Fragment{
     public void onResume() {
         super.onResume();
         ((Activity_Main)getActivity()).setUpArrow(getString(R.string.machines));
+    }
+    public Adapter_Beacons getAdapter(){
+        return inAdapter;
     }
 }

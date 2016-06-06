@@ -39,11 +39,11 @@ public class fragment_detailview  extends Fragment{
             viewPager.setAdapter(mPagerAdapter);
             viewPager.setCurrentItem(position);
             if(beaconKind == 0){
-                ((Activity_Main) getActivity()).setUpArrow(((machine)items.get(position)).getName());
+                ((Activity_Main) getActivity()).setUpArrow(((Machine)items.get(position)).getName());
             }
             else{
 
-                ((Activity_Main) getActivity()).setUpArrow(((order)items.get(position)).getName());
+                ((Activity_Main) getActivity()).setUpArrow(((Order)items.get(position)).getName());
             }
             viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
@@ -88,13 +88,13 @@ public class fragment_detailview  extends Fragment{
         public Fragment getItem(int position) {
             Fragment fragment = new Fragment();
             Bundle bundle = new Bundle();
-            if(items.get(0).getClass() == (new machine()).getClass()) {
+            if(items.get(0).getClass() == (new Machine()).getClass()) {
                 fragment = new fragment_detailview_machine();
-                bundle.putSerializable("position",(machine) items.get(position));
+                bundle.putSerializable("position",(Machine) items.get(position));
             }
-            else if(items.get(0).getClass() == (new order()).getClass()) {
+            else if(items.get(0).getClass() == (new Order()).getClass()) {
                 fragment = new fragment_detailview_order();
-                bundle.putSerializable("position",(order) items.get(position));
+                bundle.putSerializable("position",(Order) items.get(position));
             }
             fragment.setArguments(bundle);
             return fragment;

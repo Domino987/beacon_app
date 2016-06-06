@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Domino on 27.05.2016.
  */
-public class machine implements Serializable{
+public class Machine implements Serializable{
     public String getID() {
         return ID;
     }
@@ -42,33 +42,33 @@ public class machine implements Serializable{
         this.description = description;
     }
 
-    public List<order> getDatabaseOrders() {
+    public List<Order> getDatabaseOrders() {
         return databaseOrders;
     }
 
-    public void setDatabaseOrders(List<order> databaseOrders) {
+    public void setDatabaseOrders(List<Order> databaseOrders) {
         this.databaseOrders = databaseOrders;
     }
 
-    public List<order> getScanOrders() {
+    public List<Order> getScanOrders() {
         return scanOrders;
     }
 
-    public void setScanOrders(List<order> scanOrders) {
+    public void setScanOrders(List<Order> scanOrders) {
         this.scanOrders = scanOrders;
     }
 
-    public List<order> getOtherOrders() {
+    public List<Order> getOtherOrders() {
         return otherOrders;
     }
 
-    public void setOtherOrders(List<order> otherOrders) {
+    public void setOtherOrders(List<Order> otherOrders) {
         this.otherOrders = otherOrders;
     }
     private String beacon,name,description,ID;
-    private List<order> databaseOrders,scanOrders,otherOrders;
+    private List<Order> databaseOrders,scanOrders,otherOrders;
 
-    public machine(String ID, String beacon, String name, String description, List<order> databaseOrders, List<order> scanOrders, List<order> otherOrders) {
+    public Machine(String ID, String beacon, String name, String description, List<Order> databaseOrders, List<Order> scanOrders, List<Order> otherOrders) {
         this.ID = ID;
         this.beacon = beacon;
         this.name = name;
@@ -77,7 +77,7 @@ public class machine implements Serializable{
         this.scanOrders = scanOrders;
         this.otherOrders = otherOrders;
     }
-    public machine(String machine){
+    public Machine(String machine){
         try {
             JSONObject json=new JSONObject(machine);
             this.beacon=json.getString("beacon");
@@ -85,13 +85,13 @@ public class machine implements Serializable{
             e.printStackTrace();
         }
     }
-    public machine(){
+    public Machine(){
 
     }
     @Override
     public String toString(){
         String orders = "";
-        for(order x : databaseOrders){
+        for(Order x : databaseOrders){
             orders+=x.getName();
         }
         String output = "id:"+ID+",beacon:"+beacon+",name:"+name+",descr:"+description+",databaseOrder:"+orders;
