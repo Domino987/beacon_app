@@ -14,22 +14,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
 import com.estimote.sdk.*;
-import com.estimote.sdk.eddystone.Eddystone;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import javax.crypto.Mac;
 
 public class Activity_Main extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
@@ -40,9 +36,8 @@ public class Activity_Main extends AppCompatActivity
     //Beacon Specific
     private BeaconManager beaconManager;
     private String scanId;
-
-    List<Machine> machineList;
-    List<Order> orderList;
+    List<Beacon> machineList;
+    List<Beacon> orderList;
     ActionBarDrawerToggle toggle;
     Toolbar toolbar;
     DrawerLayout drawer;
@@ -97,11 +92,13 @@ public class Activity_Main extends AppCompatActivity
                         }
                     }
                 }
-            });}
+            });
+        }
         beaconManager = new BeaconManager(getApplicationContext());
-        beaconManager.setEddystoneListener(new BeaconManager.EddystoneListener() {
-            public void onEddystonesFound(List<Eddystone> eddystones) {
-                Snackbar.make(view,"Nearby Eddystone beacons: " + eddystones, Snackbar.LENGTH_LONG).show();
+        beaconManager.setNearableListener(new BeaconManager.NearableListener() {
+            public void onNearablesDiscovered(List<Nearable> nearables) {
+                Log.d("Nearable", "Nearby 'Nearable' beacons: " + nearables);
+                Snackbar.make(view,"Nearby 'Nearable' beacons: " + nearables, Snackbar.LENGTH_LONG).show();
             }
         });
     }
@@ -112,7 +109,7 @@ public class Activity_Main extends AppCompatActivity
         SystemRequirementsChecker.checkWithDefaultDialogs(this);
         beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
             @Override public void onServiceReady() {
-                scanId = beaconManager.startEddystoneScanning();
+                scanId = beaconManager.startNearableDiscovery();
             }
         });
     }
@@ -184,7 +181,7 @@ public class Activity_Main extends AppCompatActivity
             setTitle(title);
         }
     }
-    public List <Machine> getMachineList(){
+    public List <Beacon> getMachineList(){
         if(machineList == null){
             try {
                 setItems(new BeaconApiDownloader(this).execute().get());
@@ -194,7 +191,7 @@ public class Activity_Main extends AppCompatActivity
         }
         return machineList;
     }
-    public List<Order> getOrderList(){
+    public List<Beacon> getOrderList(){
         if(orderList == null){
             try {
                 setItems(new BeaconApiDownloader(this).execute().get());
@@ -208,20 +205,22 @@ public class Activity_Main extends AppCompatActivity
         if(result!=null){
             orderList = new ArrayList<>();
             machineList = new ArrayList<>();
-            JSONArray jArray = null;
+            JSONArray jArray;
+            JSONObject fullItem;
             try {
                 jArray = new JSONArray(result);
-                for(int i = 0;i<jArray.length();i++){
-                    JSONObject fullItem = jArray.optJSONObject(i);
-                    if(fullItem.optString(JSONKEYS[1]).equals("Machine")) {
-                        Machine machine = parseMachine(fullItem.optJSONObject(JSONKEYS[2]));
-                        machine.setBeacon(fullItem.optJSONObject(JSONKEYS[0]).optString("name"));
-                        machineList.add(machine);
-                    }
-                    else if(fullItem.optString(JSONKEYS[1]).equals("Job")) {
-                        Order order = parseOrder(fullItem.optJSONObject(JSONKEYS[2]));
-                        order.setBeacon(fullItem.optJSONObject(JSONKEYS[0]).optString("name"));
-                        orderList.add(order);
+                for(int i = 0; i < jArray.length(); i++){
+                    fullItem = jArray.optJSONObject(i);
+                    if(fullItem.optString(JSONKEYS[1]).equals("Machine") || fullItem.optString(JSONKEYS[1]).equals("Job")) {
+                        Beacon beacon = parseBeacon(fullItem.optJSONObject(JSONKEYS[2]));
+                        beacon.setBeacon(fullItem.optJSONObject(JSONKEYS[0]).optString("name"));
+                        if (fullItem.optString(JSONKEYS[1]).equals("Machine")) {
+                            beacon.setKind(false);
+                            machineList.add(beacon);
+                        } else {
+                            beacon.setKind(true);
+                            orderList.add(beacon);
+                        }
                     }
                 }
             }catch (JSONException e1) {
@@ -229,21 +228,14 @@ public class Activity_Main extends AppCompatActivity
             }
         }
     }
-    public Order parseOrder(JSONObject jsonString){
-        Order item = new Order();
+    public Beacon parseBeacon(JSONObject jsonString){
+        Beacon item = new Beacon();
         item.setName(jsonString.optString("name"));
         item.setID(jsonString.optString("id"));
         item.setDescription(jsonString.optString("description"));
         return item;
     }
-    public Machine parseMachine(JSONObject jsonString){
-        Machine item = new Machine();
-        item.setName(jsonString.optString("name"));
-        item.setID(jsonString.optString("id"));
-        item.setDescription(jsonString.optString("description"));
-        return item;
-    }
-    public void addOrder(final Order order){
+    public void addOrder(final Beacon order){
         orderList.add(order);
         Snackbar.make(findViewById(android.R.id.content),order.getName()+" "+getString(R.string.saved),Snackbar.LENGTH_LONG).setAction(R.string.undo,new View.OnClickListener() {
             @Override
@@ -253,14 +245,14 @@ public class Activity_Main extends AppCompatActivity
             }
         }).show();
     }
-    public void deleteOrder(Order order){
+    public void deleteOrder(Beacon order){
         orderList.remove(order);
         fragment_orders frag = (fragment_orders)getSupportFragmentManager().findFragmentByTag("FRAGMENT_ORDERS");
         if (frag != null && frag.isVisible()) {
             frag.getAdapter().removeItem(order);
         }
     }
-    public void addMachine(final Machine machine){
+    public void addMachine(final Beacon machine){
         machineList.add(machine);
         Snackbar.make(findViewById(android.R.id.content),machine.getName()+" "+getString(R.string.saved),Snackbar.LENGTH_LONG).setAction(R.string.undo,new View.OnClickListener() {
             @Override
@@ -270,7 +262,7 @@ public class Activity_Main extends AppCompatActivity
             }
         }).show();
     }
-    public void deleteMachine(Machine machine){
+    public void deleteMachine(Beacon machine){
         machineList.remove(machine);
         fragment_machines frag = (fragment_machines)getSupportFragmentManager().findFragmentByTag("FRAGMENT_MACHINES");
         if (frag != null && frag.isVisible()) {

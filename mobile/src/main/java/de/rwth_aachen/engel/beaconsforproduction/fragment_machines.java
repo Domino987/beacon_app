@@ -5,6 +5,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.v4.app.Fragment;
@@ -13,21 +14,17 @@ import android.view.ViewGroup;
 import java.util.List;
 
 
-/**
- * Created by Domino on 26.05.2016.
- */
-
 public class fragment_machines extends Fragment{
     Adapter_Beacons inAdapter;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(
                     R.layout.beacon_list, container, false);
-
-            final List<Machine> machinesList =  ((Activity_Main)getActivity()).getMachineList();
+            final List<Beacon> machinesList =  ((Activity_Main)getActivity()).getMachineList();
+            Log.i("asdasd","amchosn pushed");
             Adapter_Beacons.OnItemClickListener listener = new Adapter_Beacons.OnItemClickListener() {
                 @Override
-                public void onItemClick(Machine item) {
+                public void onItemClick(Beacon item) {
                     Fragment fragment = new fragment_detailview();
                     getActivity().getIntent().putExtra(Activity_Main.INTENT_CLASS,0);
                     getActivity().getIntent().putExtra(Activity_Main.INDEX,(machinesList.indexOf(item)));
@@ -36,9 +33,6 @@ public class fragment_machines extends Fragment{
                     ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                     ft.addToBackStack(null);
                     ft.commit();
-                }
-                @Override
-                public void onItemClick(Order item) {
                 }
             };
 

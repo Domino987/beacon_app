@@ -22,9 +22,9 @@ import java.util.Date;
  */
 public class fragment_newOrder extends Fragment {
     EditText editDate,editId,editName,editDescription;
-    Spinner beacon;
+    Spinner beaconSpinner;
     Date date;
-    Order order;
+    Beacon order;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(
@@ -43,7 +43,7 @@ public class fragment_newOrder extends Fragment {
                 pickDueDate(v);
             }
         });
-        beacon = (Spinner) view.findViewById(R.id.detailViewBeacon);
+        beaconSpinner = (Spinner) view.findViewById(R.id.detailViewBeacon);
         view.findViewById(R.id.saveButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,14 +69,15 @@ public class fragment_newOrder extends Fragment {
         datepicker.show();
     }
     public void saveOrder(View v){
-        order = new Order();
+        order = new Beacon();
+        order.setKind(true);
         if(!editName.getText().toString().equals("")  && !editId.getText().toString().equals("")){
             order.setName(editName.getText().toString());
             order.setDescription(editDescription.getText().toString());
             order.setID(editId.getText().toString());
             order.setDueDate(date);
-            if(beacon.getSelectedItem()!= null ){
-                order.setBeacon((String) beacon.getSelectedItem());
+            if(beaconSpinner.getSelectedItem()!= null ){
+                order.setBeacon((String) beaconSpinner.getSelectedItem());
             }
             else{
                 order.setBeacon("null");

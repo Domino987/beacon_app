@@ -4,13 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.NumberPicker;
-import android.widget.Spinner;
 
 import java.text.DecimalFormat;
 
@@ -32,7 +26,6 @@ public class Activity_Settings extends AppCompatActivity {
             }
             prefs = getSharedPreferences("settings", MODE_PRIVATE);
             final NumberPicker numPicker = (NumberPicker) findViewById(R.id.numberPickerSettings);
-            Spinner unitSpinner = (Spinner) findViewById(R.id.spinnerUnit);
             if(numPicker != null) {
                 String nums [] = new String[21];
                 DecimalFormat df = new DecimalFormat("#.##");
@@ -49,22 +42,6 @@ public class Activity_Settings extends AppCompatActivity {
                     @Override
                     public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                         prefs.edit().putInt("range", newVal).apply();
-                    }
-                });
-            }
-            if(unitSpinner != null){
-                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                    R.array.units, android.R.layout.simple_spinner_item);
-                unitSpinner.setAdapter(adapter);
-                unitSpinner.setSelection(prefs.getInt("unit",0));
-                unitSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        prefs.edit().putInt("unit", position).apply();
-                    }
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
                     }
                 });
             }

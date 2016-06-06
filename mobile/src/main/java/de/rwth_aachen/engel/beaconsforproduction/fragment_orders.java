@@ -13,9 +13,6 @@ import android.view.ViewGroup;
 import java.util.List;
 
 
-/**
- * Created by Domino on 26.05.2016.
- */
 
 public class fragment_orders extends Fragment{
     Adapter_Beacons inAdapter;
@@ -23,15 +20,10 @@ public class fragment_orders extends Fragment{
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(
                     R.layout.beacon_list, container, false);
-
-            final List<Order> orderList = ((Activity_Main)getActivity()).getOrderList();
-
+            final List<Beacon> orderList = ((Activity_Main)getActivity()).getOrderList();
             Adapter_Beacons.OnItemClickListener listener = new Adapter_Beacons.OnItemClickListener() {
                 @Override
-                public void onItemClick(Machine item) {
-                }
-                @Override
-                public void onItemClick(Order item) {
+                public void onItemClick(Beacon item) {
                     Fragment fragment = new fragment_detailview();
                     getActivity().getIntent().putExtra(Activity_Main.INTENT_CLASS,1);
                     getActivity().getIntent().putExtra(Activity_Main.INDEX,(orderList.indexOf(item)));

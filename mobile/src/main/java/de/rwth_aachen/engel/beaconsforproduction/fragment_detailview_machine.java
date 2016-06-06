@@ -14,12 +14,12 @@ import android.widget.TextView;
  */
 
 public class fragment_detailview_machine extends Fragment{
-    Machine Machine;
+    Beacon Machine;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(
                 R.layout.fragment_detailview_machine, container, false);
-        Machine = (Machine) getArguments().getSerializable("position");
+        Machine = (Beacon) getArguments().getSerializable("position");
         setHasOptionsMenu(true);
         ((TextView)view.findViewById(R.id.detailViewBeacon)).setText(Machine.getBeacon());
         ((TextView)view.findViewById(R.id.detailViewDescription)).setText(Machine.getDescription());

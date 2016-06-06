@@ -12,43 +12,31 @@ import java.util.List;
  * Created by Domino on 27.05.2016.
  */
 public class Adapter_Beacons extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private final List inReach,other;
+    private final List<Beacon> inReach,other;
     private final OnItemClickListener listener;
     private String header1String,header2String;
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
-    public Adapter_Beacons(List inReach,List other, OnItemClickListener listener,String header1String,String header2String){
+    public Adapter_Beacons(List<Beacon> inReach,List<Beacon> other, OnItemClickListener listener,String header1String,String header2String){
         this.header1String = header1String;
         this.header2String = header2String;
         this.inReach=inReach;
         this.other=other;
         this.listener = listener;
     }
-    public void addItem(Order order){
-        inReach.add(order);
-        notifyItemInserted(inReach.indexOf(order));
-        other.add(order);
-        notifyItemInserted(other.indexOf(order));
+    public void addItem(Beacon beacon){
+        inReach.add(beacon);
+        notifyItemInserted(inReach.indexOf(beacon));
+        other.add(beacon);
+        notifyItemInserted(other.indexOf(beacon));
     }
-    public void addItem(Machine machine){
-        inReach.add(machine);
-        notifyItemInserted(inReach.indexOf(machine));
-        other.add(machine);
-        notifyItemInserted(other.indexOf(machine));
-    }
-    public void removeItem(Order order){
-        inReach.remove(order);
-        other.remove(order);
-        notifyDataSetChanged();
-    }
-    public void removeItem(Machine machine){
-        inReach.remove(machine);
-        other.remove(machine);
+    public void removeItem(Beacon beacon){
+        inReach.remove(beacon);
+        other.remove(beacon);
         notifyDataSetChanged();
     }
     public interface OnItemClickListener {
-        void onItemClick(Machine item);
-        void onItemClick(Order item);
+        void onItemClick(Beacon item);
     }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -80,7 +68,7 @@ public class Adapter_Beacons extends RecyclerView.Adapter<RecyclerView.ViewHolde
         else if(holder instanceof VHItem)
         {
             VHItem VHitem = (VHItem)holder;
-            List selected;
+            List<Beacon> selected;
             int margin;
             if(position<inReach.size()+1){
                 selected = inReach;
@@ -90,11 +78,11 @@ public class Adapter_Beacons extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 selected = other;
                 margin = position-(inReach.size()+2);
             }
-            if (!selected.isEmpty() && selected.get(margin) instanceof Machine) {
-                VHitem.bindMachine((Machine)selected.get(margin), listener);
+            if (!selected.isEmpty() && !selected.get(margin).isOrder()) {
+                VHitem.bindMachine(selected.get(margin), listener);
             }
-            else if(!selected.isEmpty() && selected.get(margin) instanceof Order){
-                VHitem.bindOrder((Order)selected.get(margin), listener);
+            else if(!selected.isEmpty() && selected.get(margin).isOrder()){
+                VHitem.bindOrder(selected.get(margin), listener);
             }
         }
     }
@@ -118,7 +106,7 @@ public class Adapter_Beacons extends RecyclerView.Adapter<RecyclerView.ViewHolde
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.listViewItemText);
         }
-        public void bindMachine(final Machine item, final OnItemClickListener listener) {
+        public void bindMachine(final Beacon item, final OnItemClickListener listener) {
             if(item.getName()!=null) {
                 name.setText(item.getName());
                 itemView.setTag(item);
@@ -130,7 +118,7 @@ public class Adapter_Beacons extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
             });
         }
-        public void bindOrder(final Order item, final OnItemClickListener listener) {
+        public void bindOrder(final Beacon item, final OnItemClickListener listener) {
             if(item.getName()!=null) {
                 name.setText(item.getName());
                 itemView.setTag(item);

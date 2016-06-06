@@ -14,24 +14,24 @@ import java.text.DateFormat;
  */
 
 public class fragment_detailview_order extends Fragment{
-    Order Order;
+    Beacon order;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(
                 R.layout.fragment_detailview_order, container, false);
-        Order = (Order) getArguments().getSerializable("position");
+        order = (Beacon) getArguments().getSerializable("position");
         setHasOptionsMenu(true);
-        ((TextView)view.findViewById(R.id.detailViewBeacon)).setText(Order.getBeacon());
-        if(Order.getDatabaseMachine() != null) {
-            ((TextView)view.findViewById(R.id.detailViewDatabaseMachine)).setText(Order.getDatabaseMachine().getName());
+        ((TextView)view.findViewById(R.id.detailViewBeacon)).setText(order.getBeacon());
+        if(order.getDatabaseMachine() != null) {
+            ((TextView)view.findViewById(R.id.detailViewDatabaseMachine)).setText(order.getDatabaseMachine().getName());
         }
-        if(Order.getScanMachine() != null) {
-            ((TextView)view.findViewById(R.id.detailViewScanMachine)).setText(Order.getScanMachine().getName());
+        if(order.getScanMachine() != null) {
+            ((TextView)view.findViewById(R.id.detailViewScanMachine)).setText(order.getScanMachine().getName());
         }
-        ((TextView)view.findViewById(R.id.detailViewDate)).setText(DateFormat.getDateInstance().format(Order.getDueDate()));
-        ((TextView)view.findViewById(R.id.detailViewDescription)).setText(Order.getDescription());
-        ((TextView)view.findViewById(R.id.detailViewName)).setText(Order.getName());
-        ((TextView)view.findViewById(R.id.detailViewID)).setText(Order.getID());
+        ((TextView)view.findViewById(R.id.detailViewDate)).setText(DateFormat.getDateInstance().format(order.getDueDate()));
+        ((TextView)view.findViewById(R.id.detailViewDescription)).setText(order.getDescription());
+        ((TextView)view.findViewById(R.id.detailViewName)).setText(order.getName());
+        ((TextView)view.findViewById(R.id.detailViewID)).setText(order.getID());
         return view;
     }
 }

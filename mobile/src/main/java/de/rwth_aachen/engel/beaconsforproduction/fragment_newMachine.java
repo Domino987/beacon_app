@@ -16,7 +16,7 @@ import android.widget.Spinner;
 public class fragment_newMachine extends android.support.v4.app.Fragment{
     EditText editName,editId,editDescription;
     Spinner beacon;
-    Machine machine;
+    Beacon machine;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(
@@ -35,7 +35,8 @@ public class fragment_newMachine extends android.support.v4.app.Fragment{
             return view;
         }
     public void saveMachine(View v){
-        machine = new Machine();
+        machine = new Beacon();
+        machine.setKind(false);
         if(!editName.getText().toString().equals("")  && !editId.getText().toString().equals("")){
             machine.setName(editName.getText().toString());
             machine.setDescription(editDescription.getText().toString());

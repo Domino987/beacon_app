@@ -13,7 +13,7 @@ import android.os.AsyncTask;
 public class  BeaconApiDownloader extends AsyncTask <String, Integer, String> {
     Context con;
     public BeaconApiDownloader(Context con) {
-        this.con=con;
+        this.con = con;
     }
 
     protected String doInBackground(String... params) {
@@ -22,13 +22,11 @@ public class  BeaconApiDownloader extends AsyncTask <String, Integer, String> {
 
         String result;
 
-
         result = Downloader.executeGET(url);
-
 
         return result;
     }
     protected void onPostExecute(String result) {
-        ((Activity_Main)con).setItems(result);
+        ( (Activity_Main) con ).setItems(result);
     }
 }

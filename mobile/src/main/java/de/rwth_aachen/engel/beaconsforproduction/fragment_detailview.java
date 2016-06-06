@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class fragment_detailview  extends Fragment{
     ViewPager viewPager;
-    List items;
+    List<Beacon> items;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(
@@ -38,13 +38,7 @@ public class fragment_detailview  extends Fragment{
             viewPager.setPageTransformer(true, new DepthPageTransformer());
             viewPager.setAdapter(mPagerAdapter);
             viewPager.setCurrentItem(position);
-            if(beaconKind == 0){
-                ((Activity_Main) getActivity()).setUpArrow(((Machine)items.get(position)).getName());
-            }
-            else{
-
-                ((Activity_Main) getActivity()).setUpArrow(((Order)items.get(position)).getName());
-            }
+            ((Activity_Main) getActivity()).setUpArrow((items.get(position)).getName());
             viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
                         @Override
@@ -73,7 +67,7 @@ public class fragment_detailview  extends Fragment{
             super.onResume();
         }
         private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        List items;
+        List<Beacon> items;
         public ScreenSlidePagerAdapter(FragmentManager fm,List items) {
             super(fm);
             this.items = items;
@@ -86,15 +80,15 @@ public class fragment_detailview  extends Fragment{
 
         @Override
         public Fragment getItem(int position) {
-            Fragment fragment = new Fragment();
+            Fragment fragment   ;
             Bundle bundle = new Bundle();
-            if(items.get(0).getClass() == (new Machine()).getClass()) {
+            if(!items.get(position).isOrder()) {
                 fragment = new fragment_detailview_machine();
-                bundle.putSerializable("position",(Machine) items.get(position));
+                bundle.putSerializable("position",(Beacon) items.get(position));
             }
-            else if(items.get(0).getClass() == (new Order()).getClass()) {
+            else {
                 fragment = new fragment_detailview_order();
-                bundle.putSerializable("position",(Order) items.get(position));
+                bundle.putSerializable("position",(Beacon) items.get(position));
             }
             fragment.setArguments(bundle);
             return fragment;
